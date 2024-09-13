@@ -1,0 +1,171 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id @default(uuid())
+  name       String    @db.VarChar(255)
+  email      String    @unique @db.VarChar(255)
+  password   String
+  phone      String?
+  role       String // 'customer' or 'admin' or 'business'
+  profilePic Image? // One-to-one relation with Image
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime? // Soft delete
+
+  // Relations
+  restaurants Restaurant[] // One-to-many relationship
+  bookings    Booking[] // One-to-many relationship
+  reviews     Review[] // One-to-many relationship
+
+  @@index([email])
+}
+
+model Image {
+  id           String      @id @default(uuid())
+  url          String // URL of the image
+  altText      String? // Optional alt text for accessibility
+  createdAt    DateTime    @default(now())
+  userId       String?     @unique
+  user         User?       @relation(fields: [userId], references: [id]) // Optional foreign key for User
+  restaurantId String?     @unique
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id]) // Optional foreign key for Restaurant
+  menuItemId   String?     @unique
+  menuItem     MenuItem?   @relation(fields: [menuItemId], references: [id]) // Optional foreign key for MenuItem
+}
+
+model Restaurant {
+  id           String    @id @default(uuid())
+  ownerId      String
+  name         String    @db.VarChar(255)
+  description  String?
+  address      String
+  city         String?
+  state        String?
+  postalCode   String?
+  latitude     Float
+  longitude    Float
+  phone        String?
+  email        String?
+  openingHours Json // Stored as JSONB in PostgreSQL
+  capacity     Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime? // Soft delete
+  images       Image[] // One-to-many relation with Image
+
+  // Relations
+  owner    User      @relation(fields: [ownerId], references: [id]) // Restaurant belongs to an owner (user)
+  menus    Menu[] // One-to-many relationship
+  bookings Booking[] // One-to-many relationship
+  tables   Table[] // One-to-many relationship
+  reviews  Review[] // One-to-many relationship
+
+  @@index([ownerId])
+  @@index([latitude, longitude]) // Geospatial queries for nearby restaurants
+}
+
+model Menu {
+  id           String    @id @default(uuid())
+  restaurantId String
+  name         String    @db.VarChar(255)
+  description  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime? // Soft delete
+
+  // Relations
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id]) // Menu belongs to a restaurant
+  menuItems  MenuItem[] // One-to-many relationship
+
+  @@index([restaurantId])
+}
+
+model MenuItem {
+  id          String    @id @default(uuid())
+  menuId      String
+  name        String    @db.VarChar(255)
+  description String?
+  price       Float     @db.DoublePrecision
+  available   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime? // Soft delete
+  discount    Float     @db.DoublePrecision
+  image       Image? // One-to-one relation with Image for single image
+
+  // Relations
+  menu Menu @relation(fields: [menuId], references: [id]) // Menu item belongs to a menu
+
+  @@index([menuId])
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  canceled
+}
+
+model Booking {
+  id           String        @id @default(uuid())
+  userId       String
+  restaurantId String
+  bookingDate  DateTime
+  bookingTime  DateTime
+  numPeople    Int
+  status       BookingStatus @default(pending) // Enum for status
+  totalPrice   Float?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime? // Soft delete
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id]) // Booking belongs to a user
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id]) // Booking belongs to a restaurant
+
+  @@index([restaurantId, bookingDate, bookingTime])
+}
+
+model Table {
+  id           String    @id @default(uuid())
+  restaurantId String
+  capacity     String // Number of seats
+  tableNumber  Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime? // Soft delete
+
+  // Relations
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id]) // Table belongs to a restaurant
+
+  @@index([restaurantId])
+}
+
+model Review {
+  id           String    @id @default(uuid())
+  userId       String
+  restaurantId String
+  rating       Float     @db.DoublePrecision
+  comment      String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime? // Soft delete
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id]) // Review belongs to a user
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id]) // Review belongs to a restaurant
+
+  @@index([restaurantId, rating])
+}

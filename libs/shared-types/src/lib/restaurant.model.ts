@@ -27,4 +27,5 @@ export interface Restaurant {
   bookings?: Booking[]; // Optional field for bookings
   tables?: Table[]; // Optional field for tables
   reviews?: Review[]; // Optional field for reviews
+  images: string[]; // Array of image URLs
 }

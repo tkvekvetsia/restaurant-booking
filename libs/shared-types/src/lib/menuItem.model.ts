@@ -11,4 +11,5 @@ export interface MenuItem {
   updatedAt: Date;
   deletedAt?: Date | null;
   menu: Menu;
+  image?: string; // Nullable field for image
 }

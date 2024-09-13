@@ -15,4 +15,5 @@ export interface User {
   restaurants?: Restaurant[]; // Optional field for restaurants owned by the user
   bookings?: Booking[]; // Optional field for user's bookings
   reviews?: Review[]; // Optional field for user's reviews
+  profilePic?: string; // Nullable field for profile picture
 }
