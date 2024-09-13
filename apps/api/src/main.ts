@@ -8,10 +8,15 @@ const env: EnvironmentModel = {
   port: process.env.PORT ? Number(process.env.PORT) : 3000,
   environment: (process.env.NODE_ENV as NODE_ENV) || 'development',
   host: process.env.HOST || 'localhost',
+  allowedOrigins: process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',')
+    : ['*'],
 };
 
 initEnvironment(env);
 // Start the server
-app.listen(env.port, env.host, () => {
-  console.log(`[ ready ] http://${env.host}:${env.port}`);
+app.listen(env.port, () => {
+  if (env.environment === 'development') {
+    console.log(`[ ready ] http://localhost:${env.port}`);
+  }
 });
