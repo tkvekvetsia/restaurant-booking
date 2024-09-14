@@ -8,4 +8,5 @@ export const initEnvironment = (env: EnvironmentModel) => {
   environment.host = env.host;
   environment.allowedOrigins = env.allowedOrigins;
   environment.jwtSecret = env.jwtSecret;
+  environment.jwtExpiresIn = env.jwtExpiresIn;
 };

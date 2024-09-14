@@ -4,6 +4,7 @@ export interface EnvironmentModel {
   host: string;
   allowedOrigins: string[];
   jwtSecret: string;
+  jwtExpiresIn: number;
 }
 
 export type NODE_ENV = 'development' | 'production';

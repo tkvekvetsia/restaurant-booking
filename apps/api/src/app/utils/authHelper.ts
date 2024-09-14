@@ -15,7 +15,16 @@ export const hashPassword = async (password: string): Promise<string> => {
 
 export const createJWT = (user): string => {
   return jwt.sign(
-    { id: user.id, email: user.email, name: user.name, phone: user.role },
-    environment.jwtSecret
+    {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      phone: user.phone,
+      role: user.role,
+    },
+    environment.jwtSecret,
+    {
+      expiresIn: environment.jwtExpiresIn, //1 week for development env
+    }
   );
 };

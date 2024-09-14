@@ -6,11 +6,8 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  password: string;
-  phone?: string;
+  phone?: string | null;
   role: 'customer' | 'admin';
-  createdAt: Date;
-  updatedAt: Date;
   deletedAt?: Date | null;
   restaurants?: Restaurant[]; // Optional field for restaurants owned by the user
   bookings?: Booking[]; // Optional field for user's bookings

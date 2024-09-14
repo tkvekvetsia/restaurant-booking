@@ -5,6 +5,14 @@ const hasUppercase = value => {
   return /[A-Z]/.test(value);
 };
 
+const emailValidator = body('email')
+  .trim()
+  .notEmpty()
+  .withMessage('Email is required')
+  .isEmail()
+  .withMessage('Invalid email')
+  .escape();
+
 export const validateRegistration = [
   body('name')
     .trim()
@@ -12,13 +20,7 @@ export const validateRegistration = [
     .isString()
     .withMessage('Name is required')
     .escape(),
-  body('email')
-    .trim()
-    .notEmpty()
-    .withMessage('Email is required')
-    .isEmail()
-    .withMessage('Invalid email')
-    .escape(),
+  emailValidator,
   body('password')
     .trim()
     .notEmpty()
@@ -46,4 +48,14 @@ export const validateRegistration = [
     .optional({ nullable: true })
     .escape(),
   handleValidation(['password', 'confirmPassword']),
+];
+
+export const validateLogin = [
+  emailValidator,
+  body('password')
+    .trim()
+    .notEmpty()
+    .withMessage('Password is required')
+    .escape(),
+  handleValidation([]),
 ];
