@@ -19,9 +19,6 @@ export interface Restaurant {
   email?: string;
   openingHours: any; // This would be JSON object
   capacity: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
   owner: User;
   menus?: Menu[]; // Optional field for menus
   bookings?: Booking[]; // Optional field for bookings

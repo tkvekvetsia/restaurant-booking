@@ -57,7 +57,7 @@ model Restaurant {
   postalCode   String?
   latitude     Float
   longitude    Float
-  phone        String?
+  phone        String
   email        String?
   openingHours Json // Stored as JSONB in PostgreSQL
   capacity     Int
