@@ -1,5 +1,4 @@
 import { FieldValidationError, validationResult } from 'express-validator';
-import { AppError } from '../utils';
 
 export const handleValidation =
   (removeValues: string[] = []) =>

@@ -11,6 +11,7 @@ const env: EnvironmentModel = {
   allowedOrigins: process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',')
     : ['*'],
+  jwtSecret: process.env.JWT_SECRET,
 };
 
 initEnvironment(env);

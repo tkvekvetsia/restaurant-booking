@@ -19,7 +19,7 @@ model User {
   email      String    @unique @db.VarChar(255)
   password   String
   phone      String?
-  role       String // 'customer' or 'admin' or 'business'
+  role       String    @default("customer") // 'customer' or 'admin' or 'business'
   profilePic Image? // One-to-one relation with Image
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt

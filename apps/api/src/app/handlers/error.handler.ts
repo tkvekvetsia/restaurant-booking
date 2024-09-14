@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { AppError, logger } from '../utils';
 import { environment } from '../config/environment';
+import { Prisma } from '@prisma/client';
 
 // Global error handler middleware
 export const errorHandler = (
@@ -21,7 +22,7 @@ export const errorHandler = (
       errors: err.errors || null,
     };
 
-    console.log(err);
+    console.error(err);
     if (environment.environment === 'development') {
       errorRes['stackTrace'] = err.stack;
       errorRes['err'] = err;
@@ -30,10 +31,40 @@ export const errorHandler = (
     return res.status(err.statusCode).json(errorRes);
   }
 
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    let message = '';
+    switch (err.code) {
+      case 'P2002':
+        // handling duplicate key errors
+        message = `Duplicate field value: ${err.meta.target}`;
+        break;
+      case 'P2014':
+        // handling invalid id errors
+        message = `Invalid ID: ${err.meta.target}`;
+        break;
+      case 'P2003':
+        // handling invalid data errors
+        message = `Invalid input data: ${err.meta.target}`;
+        break;
+      default:
+        // handling all other errors
+        message = `Something went wrong: ${err.message}`;
+        break;
+    }
+    return res.status(400).json({
+      status: 'fail',
+      message: message,
+      data: null,
+      errors: null,
+    });
+  }
+
   // Generic error handling (500)
+  console.error(err);
   res.status(500).json({
     status: 500,
     message: 'Internal Server Error',
+    data: null,
     stack: environment.environment === 'development' ? err.stack : undefined,
   });
 };
