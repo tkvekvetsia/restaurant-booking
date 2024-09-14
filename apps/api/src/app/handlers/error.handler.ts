@@ -10,16 +10,18 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   // Log the error details
-  logger.error(err.message);
+  // logger.error(err.message);
 
   // Custom error handling
-  if (err instanceof AppError) {
+  if (err instanceof AppError && err.isOperational) {
     const errorRes = {
-      status: err.statusCode,
+      statusCode: err.statusCode,
       message: err.message,
       data: null,
+      errors: err.errors || null,
     };
 
+    console.log(err);
     if (environment.environment === 'development') {
       errorRes['stackTrace'] = err.stack;
       errorRes['err'] = err;
@@ -29,10 +31,9 @@ export const errorHandler = (
   }
 
   // Generic error handling (500)
-
   res.status(500).json({
     status: 500,
     message: 'Internal Server Error',
-    stack: err.stack,
+    stack: environment.environment === 'development' ? err.stack : undefined,
   });
 };
