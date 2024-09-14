@@ -3,6 +3,7 @@ export interface EnvironmentModel {
   port: number;
   host: string;
   allowedOrigins: string[];
+  jwtSecret: string;
 }
 
 export type NODE_ENV = 'development' | 'production';
