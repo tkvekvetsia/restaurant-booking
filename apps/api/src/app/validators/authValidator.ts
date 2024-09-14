@@ -1,5 +1,5 @@
 import { body } from 'express-validator';
-import { handleValidation } from '../middlewares/handleValidation.middleware';
+import { handleValidation } from '../middlewares';
 
 const hasUppercase = value => {
   return /[A-Z]/.test(value);

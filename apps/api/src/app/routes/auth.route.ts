@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validateRegistration } from '../validators/registrationValidator';
+import { validateRegistration } from '../validators';
 import { registerUser } from '../handlers';
 import { catchAsync } from '../utils';
 
