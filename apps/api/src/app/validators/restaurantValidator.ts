@@ -1,5 +1,5 @@
 import { body } from 'express-validator';
-import { handleValidation } from '../middlewares';
+import { authorizationMiddleware, handleValidation } from '../middlewares';
 // Custom validator to validate time format
 const isValidTimeFormat = value => {
   const timeFormat = /^([0-1]\d|2[0-3]):([0-5]\d)$/;

@@ -5,8 +5,8 @@ import { Table } from './table.model';
 import { Review } from './review.model';
 
 export interface Restaurant {
-  id: number;
-  ownerId: number;
+  id: string;
+  ownerId: string;
   name: string;
   description?: string;
   address: string;

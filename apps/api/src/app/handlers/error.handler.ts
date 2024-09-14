@@ -46,6 +46,11 @@ export const errorHandler = (
         // handling invalid data errors
         message = `Invalid input data: ${err.meta.target}`;
         break;
+      case 'P2025':
+        if (req.method && req.method.toUpperCase() === 'DELETE') {
+          message = `${err.meta.modelName},  ${err.meta.cause}`;
+        }
+        break;
       default:
         // handling all other errors
         message = `Something went wrong: ${err.message}`;

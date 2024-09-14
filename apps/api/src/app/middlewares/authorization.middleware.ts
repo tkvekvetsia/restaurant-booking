@@ -2,6 +2,11 @@ import jwt from 'jsonwebtoken';
 import { environment } from '../config/environment';
 
 export const authorizationMiddleware = (req, res, next) => {
+  if (req.body.user) {
+    return res
+      .status(401)
+      .json({ status: 'fail', message: 'invalid request body' });
+  }
   const bearer = req.headers.authorization;
   if (!bearer || !bearer.startsWith('Bearer ')) {
     return res.status(401).json({ status: 'fail', message: 'Unauthorized' });
