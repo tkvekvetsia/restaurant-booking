@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'lib-header',
+  selector: 'rb-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
