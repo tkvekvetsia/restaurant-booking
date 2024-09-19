@@ -1,4 +1,4 @@
-import { body } from 'express-validator';
+import { body, check, oneOf, query } from 'express-validator';
 import { authorizationMiddleware, handleValidation } from '../middlewares';
 // Custom validator to validate time format
 const isValidTimeFormat = value => {
@@ -129,5 +129,39 @@ export const validateCreateRestaurant = [
   body('openingHours')
     .custom(validateOpeningHoursStructure)
     .withMessage('Invalid openingHours format'),
+  handleValidation([]),
+];
+
+export const validateGetRestaurant = [
+  query('page')
+    .isInt({ min: 1, max: 10 })
+    .withMessage('Page should be an integer with range 1-10')
+    .optional(),
+  query('limit')
+    .isInt({ min: 1, max: 10 })
+    .withMessage('Limit should be an integer with range 1-10')
+    .optional(),
+  query('city')
+    .isString()
+    .withMessage('City should be a string')
+    .optional()
+    .escape(),
+  query('address')
+    .isString()
+    .withMessage('Address should be a string')
+    .optional()
+    .escape(),
+  query('dish')
+    .isString()
+    .withMessage('Dish should be a string')
+    .optional()
+    .escape(),
+  query('sortBy')
+    .isString()
+    .withMessage('SortBY should be a string')
+    .optional()
+    .escape(),
+  query('desc').optional().isBoolean().withMessage('Desc should be a boolean'),
+  oneOf([check('sortBy').equals('rating').optional()]),
   handleValidation([]),
 ];

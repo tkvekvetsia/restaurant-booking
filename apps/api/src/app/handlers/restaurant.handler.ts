@@ -1,5 +1,6 @@
 import prisma from '../db/db';
 import { AppError } from '../utils';
+import { hasPermissionForAction } from '../utils/isAdmin';
 const toRestaurantDto = restaurant => {
   return {
     id: restaurant.id,
@@ -18,6 +19,51 @@ const toRestaurantDto = restaurant => {
     capacity: restaurant.capacity,
   };
 };
+
+export const getRestaurants = async (req, res, next) => {
+  const {
+    page = 1,
+    limit = 10,
+    city,
+    address,
+    dish,
+    sortBy,
+    desc = false,
+  } = req.query;
+
+  const skip = (page - 1) * limit;
+
+  const restaurants = await prisma.restaurant.findMany({
+    where: {
+      city: { contains: city, mode: 'insensitive' },
+      address: { contains: address, mode: 'insensitive' },
+      menus: dish
+        ? {
+            some: {
+              menuItems: {
+                some: {
+                  name: { contains: dish, mode: 'insensitive' },
+                },
+              },
+            },
+          }
+        : undefined,
+    },
+    orderBy: sortBy,
+    skip,
+    take: limit,
+  });
+
+  const restaurantDtos = restaurants.map(res => toRestaurantDto(res));
+  res.status(200).json({
+    status: 'success',
+    message: 'Restaurants found',
+    data: {
+      restaurants: restaurantDtos,
+    },
+  });
+};
+
 export const createRestaurant = async (req, res, next) => {
   const createdRestaurant = await prisma.restaurant.create({
     data: {
@@ -82,7 +128,7 @@ export const deleteRestaurantById = async (req, res, next) => {
     return next(new AppError('Restaurant not found', 404));
   }
 
-  if (restaurant.ownerId !== req.user.id) {
+  if (!hasPermissionForAction(req.body.user, restaurant.ownerId)) {
     return next(
       new AppError('You are not authorized to delete this restaurant', 401)
     );
