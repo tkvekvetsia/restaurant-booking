@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@restaurant-booking/shared-types": ["libs/shared-types/src/index.ts"]
+      "@restaurant-booking/shared-types": ["libs/shared-types/src/index.ts"],
+      "@restaurant-booking/shared-ui": ["libs/shared-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

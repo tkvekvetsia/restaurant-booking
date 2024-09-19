@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "serve:api:dev": "nx run api:serve:development",
-    "serve:fronted:dev": "nx run frontend:serve",
+    "serve:frontend:dev": "nx run frontend:serve",
     "serve:both": " npm run serve:api:dev & npm run serve:fronted:dev"
   },
   "private": true,
