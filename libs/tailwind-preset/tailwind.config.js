@@ -1,5 +1,8 @@
 module.exports = {
   theme: {
+    borderRadius: {
+      md: '6px',
+    },
     colors: {
       primary: {
         light: '#a2d9a0', // Light Green for Hover states, light backgrounds
@@ -26,9 +29,7 @@ module.exports = {
       },
     },
     spacing: {
-      primary: {
-        radius: '0.5rem',
-      },
+      primary: {},
     },
   },
   plugins: [],

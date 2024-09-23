@@ -1,0 +1,13 @@
+<button
+  class="text-white rounded-md font-medium block {{ styleClass }}"
+  [ngClass]="{
+    'bg-alert-info': role === 'primary',
+    'bg-primary': role === 'secondary',
+    'bg-alert-warning ': role === 'warning',
+    'bg-alert-error': role === 'error',
+  }"
+  [disabled]="disabled || waiting"
+  (click)="clickEvent.emit($event)"
+  [type]="type">
+  {{ label }}
+</button>

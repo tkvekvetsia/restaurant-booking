@@ -15,8 +15,10 @@ import {
 export class BaseButtonComponent {
   @Input() label = '';
   @Input() disabled = false;
-  @Input() type = 'button';
+  @Input() type: ButtonType = 'button';
   @Input() styleClass = '';
   @Input() waiting = false;
-  @Output() clickEvent = new EventEmitter<void>();
+  @Output() clickEvent = new EventEmitter();
 }
+
+type ButtonType = 'submit' | 'reset' | 'button';
