@@ -2,16 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 body {
-  @apply bg-white text-black px-[6rem];
+  @apply bg-white text-black px-[6rem] min-h-[100vh] min-h-dvh;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   @apply text-black-dark;
 }
 
@@ -20,7 +22,7 @@ h1, h2, h3 {
 }
 
 .card {
-  @apply  border-[1px] border-solid border-gray bg-gray-light rounded-[0.5rem] px-[1.5rem] py-[1rem];
+  @apply border-[1px] border-solid border-gray bg-gray-light rounded-[0.5rem] px-[1.5rem] py-[1rem];
 }
 
 .alert-error {
@@ -28,7 +30,9 @@ h1, h2, h3 {
 }
 
 // Example Text Spacing
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin-bottom: 1rem;
   line-height: 1.5;
 }
