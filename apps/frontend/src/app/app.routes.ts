@@ -4,7 +4,7 @@ export const appRoutes: Route[] = [
   {
     path: 'restaurants',
     loadChildren: () =>
-      import('@restaurant-booking/restaurants').then(r => r.RESTAURANT_ROUTES),
+      import('@restaurant-booking/restaurants').then(r => r.restaurantsRoutes),
     title: 'Restaurants',
   },
 ];

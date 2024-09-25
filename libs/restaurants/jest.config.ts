@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
   displayName: 'restaurants',
-  preset: '../../../jest.preset.js',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/restaurants/restaurants',
+  coverageDirectory: '../../coverage/libs/restaurants',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
