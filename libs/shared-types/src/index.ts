@@ -7,3 +7,4 @@ export * from './lib/restaurant.model';
 export * from './lib/review.model';
 export * from './lib/table.model';
 export * from './lib/user.model';
+export * from './lib/coreResponse.model';

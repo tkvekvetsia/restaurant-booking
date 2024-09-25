@@ -17,7 +17,7 @@ export interface Restaurant {
   longitude: number;
   phone?: string;
   email?: string;
-  openingHours: any; // This would be JSON object
+  openingHours: OpeningHours; // This would be JSON object
   capacity: number;
   owner: User;
   menus?: Menu[]; // Optional field for menus
@@ -25,4 +25,19 @@ export interface Restaurant {
   tables?: Table[]; // Optional field for tables
   reviews?: Review[]; // Optional field for reviews
   images: string[]; // Array of image URLs
+}
+
+export interface OpeningHours {
+  monday: OpeningHoursByDay[];
+  tuesday: OpeningHoursByDay[];
+  wednesday: OpeningHoursByDay[];
+  thursday: OpeningHoursByDay[];
+  friday: OpeningHoursByDay[];
+  saturday: OpeningHoursByDay[];
+  sunday: OpeningHoursByDay[];
+}
+
+export interface OpeningHoursByDay {
+  open: string;
+  close: string;
 }
