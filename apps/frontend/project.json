@@ -23,7 +23,12 @@
           }
         ],
         "styles": ["apps/frontend/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "server": "apps/frontend/src/main.server.ts",
+        "prerender": true,
+        "ssr": {
+          "entry": "apps/frontend/server.ts"
+        }
       },
       "configurations": {
         "production": {
