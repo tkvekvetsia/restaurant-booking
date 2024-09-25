@@ -15,7 +15,9 @@ export const registerUser = async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    token: token,
+    data: {
+      token,
+    },
   });
 };
 
@@ -51,10 +53,11 @@ export const login = async (req, res, next) => {
     email: user.email,
     phone: user.phone,
   };
+
   res.status(200).json({
     status: 'success',
     errors: null,
-    body: {
+    data: {
       user: responseUser,
       token,
     },

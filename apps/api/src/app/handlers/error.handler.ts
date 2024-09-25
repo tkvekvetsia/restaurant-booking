@@ -22,7 +22,6 @@ export const errorHandler = (
       errors: err.errors || null,
     };
 
-    console.error(err);
     if (environment.environment === 'development') {
       errorRes['stackTrace'] = err.stack;
       errorRes['err'] = err;

@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   isDevMode,
   provideZoneChangeDetection,
@@ -17,6 +18,7 @@ import {
 } from '@restaurant-booking/restaurants';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { EnvService, loadEnvFactory } from './core/services/env.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,5 +30,11 @@ export const appConfig: ApplicationConfig = {
     provideState(restaurantsFeature),
     provideEffects({ loadRestaurantsEffect }),
     provideHttpClient(withFetch()),
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [EnvService],
+      useFactory: loadEnvFactory,
+    },
   ],
 };

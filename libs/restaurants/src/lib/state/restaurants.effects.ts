@@ -13,11 +13,16 @@ export const loadRestaurantsEffect = createEffect(
       ofType(restaurantsActions.loadRestaurants),
       switchMap(() => {
         return restaurantsFacadeService.getAllRestaurants().pipe(
-          map(response =>
-            restaurantsActions.loadRestaurantsSuccess({
-              restaurants: response.data,
-            })
-          ),
+          map(response => {
+            if (response.status === 'success' && response.data) {
+              return restaurantsActions.loadRestaurantsSuccess({
+                restaurants: response.data.restaurants,
+              });
+            }
+            return restaurantsActions.loadRestaurantsFailure({
+              error: response.message || '',
+            });
+          }),
           catchError(_ =>
             of(restaurantsActions.loadRestaurantsFailure({ error: '' }))
           )

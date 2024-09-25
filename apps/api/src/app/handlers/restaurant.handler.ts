@@ -57,7 +57,6 @@ export const getRestaurants = async (req, res, next) => {
   const restaurantDtos = restaurants.map(res => toRestaurantDto(res));
   res.status(200).json({
     status: 'success',
-    message: 'Restaurants found',
     data: {
       restaurants: restaurantDtos,
     },

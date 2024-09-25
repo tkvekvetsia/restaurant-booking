@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@restaurant-booking/environment": ["libs/environment/src/index.ts"],
       "@restaurant-booking/restaurants": ["libs/restaurants/src/index.ts"],
       "@restaurant-booking/shared-types": ["libs/shared-types/src/index.ts"],
       "@restaurant-booking/shared-ui": ["libs/shared-ui/src/index.ts"]
