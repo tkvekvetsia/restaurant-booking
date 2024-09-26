@@ -6,7 +6,8 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import { environment } from './config/environment';
-import { errorHandler } from './handlers/error.handler';
+import { errorHandler } from './handlers';
+import path from 'path';
 
 const app = express();
 // cors middleware
@@ -14,8 +15,9 @@ app.use(morgan('dev'));
 
 app.use(
   cors({
-    origin: environment.allowedOrigins,
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: '*',
   })
 );
 
@@ -36,15 +38,19 @@ app.use(limiter);
 
 // use express.json() middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({ extended: false }));
 //main block
-app.use('/api', router);
+
+app.use(
+  '/api/images/',
+  express.static(path.resolve('./../', 'assets', 'images'))
+);
 
 app.get('/', (req, res) => {
   throw new Error('Something went wrong');
   res.send({ message: 'Hello API' });
 });
+app.use('/api', router);
 
 app.use(errorHandler);
 export default app;

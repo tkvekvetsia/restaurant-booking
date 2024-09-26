@@ -11,7 +11,7 @@ export const registerUserAsBusiness = async (req, res, next) => {
       email: req.body.email,
       phone: req.body.phone || null,
       password: await hashPassword(req.body.password),
-      role: 'admin',
+      role: 'business',
     },
   })) as TokenUser;
   const token = createJWT(user);
@@ -25,7 +25,7 @@ export const registerUserAsBusiness = async (req, res, next) => {
 };
 
 export const loginAsBusiness = async (req, res, next) => {
-  const user = await getUser({ email: req.body.email, role: 'admin' });
+  const user = await getUser({ email: req.body.email, role: 'business' });
 
   if (!user) {
     return next(new AppError('Inavlid email or password', 401));

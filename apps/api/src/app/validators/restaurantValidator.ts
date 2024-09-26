@@ -7,7 +7,8 @@ const isValidTimeFormat = value => {
 };
 
 // Custom validator to validate the structure of openingHours
-const validateOpeningHoursStructure = value => {
+const validateOpeningHoursStructure = initialValue => {
+  const value = JSON.parse(initialValue);
   if (typeof value !== 'object' || value === null) {
     throw new Error('openingHours must be a valid JSON object');
   }
@@ -116,17 +117,17 @@ export const validateCreateRestaurant = [
     .isEmail()
     .withMessage('Invalid email')
     .escape(),
-  body('openingHours')
-    .notEmpty()
-    .withMessage('Opening hours is required')
-    .isObject()
-    .withMessage('Opening hours should be an object'),
+  // body('openingHours')
+  //   .isString()
+  //   .withMessage('Opening hours should be an object'),
   body('capacity')
     .notEmpty()
     .withMessage('Capacity is required')
     .isInt()
     .withMessage('Capacity should be an integer'),
   body('openingHours')
+    .notEmpty()
+    .withMessage('Opening hours is required')
     .custom(validateOpeningHoursStructure)
     .withMessage('Invalid openingHours format'),
   handleValidation([]),

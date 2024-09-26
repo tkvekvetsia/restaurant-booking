@@ -8,8 +8,11 @@ import {
 } from '../handlers';
 import { catchAsync } from '../utils';
 import { param } from 'express-validator';
-import { authorizationMiddleware } from '../middlewares';
-import { isBusiness } from '../middlewares/isBusiness.middleware';
+import {
+  authorizationMiddleware,
+  uploadAvatar,
+  isBusiness,
+} from '../middlewares';
 
 const router = Router();
 
@@ -21,7 +24,12 @@ router.get('/:id', param('id').trim(), catchAsync(getRestaurantById));
 // routes for business owner
 router.post(
   '/',
-  [authorizationMiddleware, isBusiness, ...validateCreateRestaurant],
+  [
+    authorizationMiddleware,
+    uploadAvatar,
+    isBusiness,
+    ...validateCreateRestaurant,
+  ],
   catchAsync(createRestaurant)
 );
 

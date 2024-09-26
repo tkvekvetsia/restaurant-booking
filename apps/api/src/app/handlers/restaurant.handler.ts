@@ -1,6 +1,7 @@
 import prisma from '../db/db';
 import { AppError } from '../utils';
-import { hasPermissionForAction } from '../utils/isAdmin';
+import { hasPermissionForAction, processAndSaveImage } from '../utils';
+
 const toRestaurantDto = restaurant => {
   return {
     id: restaurant.id,
@@ -64,6 +65,10 @@ export const getRestaurants = async (req, res, next) => {
 };
 
 export const createRestaurant = async (req, res, next) => {
+  let fileName: string | null = null;
+  if (req.file) {
+    fileName = await processAndSaveImage(req.file);
+  }
   const createdRestaurant = await prisma.restaurant.create({
     data: {
       name: req.body.name,
@@ -74,11 +79,12 @@ export const createRestaurant = async (req, res, next) => {
       city: req.body.city,
       state: req.body.state,
       postalCode: req.body.postalCode,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude,
+      latitude: parseFloat(req.body.latitude),
+      longitude: parseFloat(req.body.longitude),
       ownerId: req.user.id,
       openingHours: req.body.openingHours,
-      capacity: req.body.capacity,
+      capacity: parseInt(req.body.capacity),
+      avatar: fileName,
     },
   });
 

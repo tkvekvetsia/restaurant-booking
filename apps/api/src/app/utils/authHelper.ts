@@ -29,19 +29,3 @@ export const createJWT = (user: TokenUser): string => {
     }
   );
 };
-
-export const createAdminJWT = (user: TokenUser): string => {
-  return jwt.sign(
-    {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      phone: user.phone,
-      role: user.role,
-    },
-    environment.jwtSecretAdmin,
-    {
-      expiresIn: environment.jwtExpiresIn, //1 week for development env
-    }
-  );
-};

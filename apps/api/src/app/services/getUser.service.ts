@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 export const getUser = async (where: Prisma.UserWhereUniqueInput) => {
   return prisma.user.findUnique({
     where,
-  }) as TokenUser & {
+  }) as unknown as TokenUser & {
     name: string;
     password: string;
   };
