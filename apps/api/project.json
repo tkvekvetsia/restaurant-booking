@@ -9,6 +9,9 @@
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "externals":{
+        "sharp": "commonjs sharp"
+      } ,
       "options": {
         "platform": "node",
         "outputPath": "dist/apps/api",

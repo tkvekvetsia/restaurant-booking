@@ -7,7 +7,7 @@ export interface User {
   name: string;
   email: string;
   phone?: string | null;
-  role: 'customer' | 'admin';
+  role: 'customer' | 'admin' | 'business';
   deletedAt?: Date | null;
   restaurants?: Restaurant[]; // Optional field for restaurants owned by the user
   bookings?: Booking[]; // Optional field for user's bookings

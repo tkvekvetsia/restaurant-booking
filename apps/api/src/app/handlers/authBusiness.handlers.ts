@@ -2,14 +2,16 @@ import { User } from '@restaurant-booking/shared-types';
 import { AppError, comparePassword, createJWT, hashPassword } from '../utils';
 import prisma from '../db/db';
 import { TokenUser } from '../models/tokenUser.model';
+import { getUser } from '../services/getUser.service';
 
-export const registerUser = async (req, res, next) => {
+export const registerUserAsBusiness = async (req, res, next) => {
   const user = (await prisma.user.create({
     data: {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone || null,
       password: await hashPassword(req.body.password),
+      role: 'admin',
     },
   })) as TokenUser;
   const token = createJWT(user);
@@ -22,15 +24,8 @@ export const registerUser = async (req, res, next) => {
   });
 };
 
-export const login = async (req, res, next) => {
-  const user = (await prisma.user.findUnique({
-    where: {
-      email: req.body.email,
-    },
-  })) as TokenUser & {
-    name: string;
-    password: string;
-  };
+export const loginAsBusiness = async (req, res, next) => {
+  const user = await getUser({ email: req.body.email, role: 'admin' });
 
   if (!user) {
     return next(new AppError('Inavlid email or password', 401));
