@@ -19,6 +19,7 @@ const toRestaurantDto = restaurant => {
     ownerId: restaurant.ownerId,
     openingHours: restaurant.openingHours,
     capacity: restaurant.capacity,
+    avatar: restaurant.avatar,
   };
 };
 
@@ -68,11 +69,13 @@ export const getRestaurants = async (req, res, next) => {
 export const createRestaurant = async (req, res, next) => {
   let fileName: string | null = null;
   if (req.file) {
-    fileName = await processAndSaveImage(req.file);
-    res.status(200).json({
-      fileName: fileName,
-    });
+    fileName = uuidv4() + '.restaurant.avatar';
+    const result = await processAndSaveImage(req.file, fileName);
+    if (result && result.format) {
+      fileName = `${fileName}.${result.format}`;
+    }
   }
+
   const createdRestaurant = await prisma.restaurant.create({
     data: {
       name: req.body.name,

@@ -1,15 +1,14 @@
 import sharp from 'sharp';
 import * as fs from 'node:fs';
 import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
 
-export async function processAndSaveImage(buffer): Promise<any> {
+export async function processAndSaveImage(buffer, filename): Promise<any> {
   // Define the directory path for saving the image
   // @ts-ignore
   const imageDirectory = path.resolve(__dirname, './../../assets/images');
 
-  const filename = uuidv4() + '.restaurant.avatar';
   const savePath = path.join(imageDirectory, filename);
+
   // Ensure the directory exists, if not, create it
   if (!fs.existsSync(imageDirectory)) {
     fs.mkdirSync(imageDirectory, { recursive: true });
