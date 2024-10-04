@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import { environment } from './config/environment';
 import { errorHandler } from './handlers';
 import path from 'path';
+import * as process from 'node:process';
 
 const app = express();
 // cors middleware
@@ -44,7 +45,7 @@ app.use(express.urlencoded({ extended: false }));
 // @ts-ignore
 app.use(
   '/api/images/',
-  express.static(path.resolve(__dirname, './../assets/images'))
+  express.static(path.resolve(__dirname, process.env.PATH_TO_STATIC_FOLDER))
 );
 
 app.get('/', (req, res) => {

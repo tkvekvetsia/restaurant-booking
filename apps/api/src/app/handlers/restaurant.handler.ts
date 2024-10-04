@@ -67,7 +67,7 @@ export const getRestaurants = async (req, res, next) => {
 };
 
 export const createRestaurant = async (req, res, next) => {
-  let fileName: string | null = null;
+  let fileName = 'default.restaurant.avatar.jpeg';
   if (req.file) {
     fileName = uuidv4() + '.restaurant.avatar';
     const result = await processAndSaveImage(req.file, fileName);

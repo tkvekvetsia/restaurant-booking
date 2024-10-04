@@ -1,11 +1,13 @@
 import sharp from 'sharp';
 import * as fs from 'node:fs';
 import path from 'path';
+import { environment } from '../config/environment';
 
 export async function processAndSaveImage(buffer, filename): Promise<any> {
   // Define the directory path for saving the image
   // @ts-ignore
-  const imageDirectory = path.resolve(__dirname, './../../assets/images');
+  const dirname = __dirname;
+  const imageDirectory = path.resolve(dirname, environment.pathToUploadFolder);
 
   const savePath = path.join(imageDirectory, filename);
 

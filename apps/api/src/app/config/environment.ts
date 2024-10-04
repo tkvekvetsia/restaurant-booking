@@ -9,4 +9,6 @@ export const initEnvironment = (env: EnvironmentModel) => {
   environment.allowedOrigins = env.allowedOrigins;
   environment.jwtSecret = env.jwtSecret;
   environment.jwtExpiresIn = env.jwtExpiresIn;
+  environment.pathToUploadFolder = env.pathToUploadFolder;
+  environment.pathToStaticFiles = env.pathToStaticFiles;
 };
