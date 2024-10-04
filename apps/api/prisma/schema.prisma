@@ -65,6 +65,7 @@ model Restaurant {
   updatedAt    DateTime  @updatedAt
   deletedAt    DateTime? // Soft delete
   images       Image[] // One-to-many relation with Image
+  avatar       String? // URL of the avatar image
 
   // Relations
   owner    User      @relation(fields: [ownerId], references: [id]) // Restaurant belongs to an owner (user)

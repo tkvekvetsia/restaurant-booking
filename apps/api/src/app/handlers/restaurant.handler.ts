@@ -64,10 +64,26 @@ export const getRestaurants = async (req, res, next) => {
   });
 };
 
+export const upload = async (req, res, next) => {
+  if (req.file) {
+    const fileName = await processAndSaveImage(req.file);
+    return res.status(200).json({
+      fileName,
+    });
+  }
+
+  return res.status(400).json({
+    status: 'fail',
+    message: 'Image upload failed',
+  });
+};
 export const createRestaurant = async (req, res, next) => {
   let fileName: string | null = null;
   if (req.file) {
     fileName = await processAndSaveImage(req.file);
+    res.status(200).json({
+      fileName: fileName,
+    });
   }
   const createdRestaurant = await prisma.restaurant.create({
     data: {

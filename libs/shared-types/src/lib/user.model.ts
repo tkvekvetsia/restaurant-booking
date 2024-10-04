@@ -3,7 +3,7 @@ import { Booking } from './booking.model';
 import { Review } from './review.model';
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone?: string | null;
