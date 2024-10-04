@@ -5,7 +5,6 @@ import {
   deleteRestaurantById,
   getRestaurantById,
   getRestaurants,
-  upload,
 } from '../handlers';
 import { catchAsync } from '../utils';
 import { param } from 'express-validator';
@@ -27,14 +26,12 @@ router.post(
   '/',
   [
     authorizationMiddleware,
-    uploadAvatar,
     isBusiness,
+    uploadAvatar,
     ...validateCreateRestaurant,
   ],
   catchAsync(createRestaurant)
 );
-
-router.post('/upload', uploadAvatar, catchAsync(upload));
 
 router.delete(
   '/:id',

@@ -41,13 +41,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //main block
 
+// @ts-ignore
 app.use(
   '/api/images/',
-  express.static(path.resolve('./../', 'assets', 'images'))
+  express.static(path.resolve(__dirname, './../assets/images'))
 );
 
 app.get('/', (req, res) => {
-  throw new Error('Something went wrong');
   res.send({ message: 'Hello API' });
 });
 app.use('/api', router);
