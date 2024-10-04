@@ -13,6 +13,8 @@ const env: EnvironmentModel = {
     : ['*'],
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: parseInt(process.env.JWT_EXPIRES_IN),
+  pathToUploadFolder: process.env.PATH_TO_UPLOAD_FOLDER || './assets',
+  pathToStaticFiles: process.env.PATH_TO_STATIC_FILES || './assets',
 };
 
 initEnvironment(env);
