@@ -2,6 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "./../../../libs/shared-ui/src/lib/style";
+
 * {
   padding: 0;
   margin: 0;

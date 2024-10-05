@@ -1,0 +1,38 @@
+.rb-input {
+  width: 100%;
+  padding: 18px 10px 8px;
+  border: 1px solid black;
+  transition: all;
+  animation-duration: 200ms;
+  @apply border border-gray-dark  rounded-md;
+  &:focus {
+    outline: none;
+    @apply border-primary;
+  }
+
+  &.ng-touched {
+    &.ng-invalid {
+      @apply border-alert-error;
+      border-width: 1px;
+      & ~ .rb-label {
+        @apply text-alert-error;
+      }
+    }
+  }
+}
+
+.rb-label {
+  transition: ease-in-out;
+  @apply absolute left-[13px] bottom-1/2 translate-y-1/2 text-black transition-all duration-200;
+
+  &-floating {
+    top: 0;
+    transform: translateY(0);
+    @apply text-md text-primary;
+    &--on-dirty {
+      @apply text-black-light;
+    }
+  }
+
+}
+
