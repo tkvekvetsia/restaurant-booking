@@ -7,4 +7,9 @@ export const appRoutes: Route[] = [
       import('@restaurant-booking/restaurants').then(r => r.restaurantsRoutes),
     title: 'Restaurants',
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('@restaurant-booking/auth').then(a => a.authRoutes),
+  },
 ];
