@@ -7,6 +7,7 @@ import { Review } from './review.model';
 export interface Restaurant {
   id: string;
   ownerId: string;
+  avatar: string;
   name: string;
   description?: string;
   address: string;

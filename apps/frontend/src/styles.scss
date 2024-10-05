@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 body {
-  @apply bg-white text-black px-[6rem] min-h-[100vh] min-h-dvh;
+  @apply bg-white text-black px-[2rem] md:px-[6rem] min-h-[100vh] min-h-dvh pb-[3rem] relative;
 }
 
 h1,
@@ -30,16 +30,16 @@ h3 {
 }
 
 // Example Text Spacing
-h1,
-h2,
-h3 {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
+//h1,
+//h2,
+//h3 {
+//  margin-bottom: 1rem;
+//  line-height: 1.5;
+//}
 
-p {
-  margin-bottom: 1rem; // Spacing between paragraphs
-}
+//p {
+//  margin-bottom: 1rem; // Spacing between paragraphs
+//}
 
 // Example Component Spacing
 .button {

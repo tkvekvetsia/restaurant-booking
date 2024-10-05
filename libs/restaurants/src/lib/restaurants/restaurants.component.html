@@ -1,1 +1,32 @@
-{{restaurants() | json}}
+<div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[10px]">
+  @for (restaurant of restaurants(); track restaurant.id) {
+    <div
+      class="shadow-md hover:cursor-pointer hover:shadow-xl hover:duration-150 rounded-lg"
+    >
+      <img
+        [ngSrc]="restaurant.avatar | image"
+        width="20"
+        height="20"
+        alt="hotel-img"
+        class="w-full h-[17rem] mobile:h-100 object-cover rounded-t-lg"
+      />
+      <div class="w-full p-3 bg-white  pb-[1rem]">
+        <div class="mb-3 px-[1rem] mt-[1rem]">
+          <h1 class="mb-[1rem]">{{restaurant.name}}</h1>
+          <div class="flex relative  justify-between pb-[0.5rem] mb-[0.25rem] after after:w-[95%] after:h-[1px] after:bg-gray-light after:absolute after:top-[100%] after:right-[50%] after:translate-x-1/2">
+            <p class="text-black-dark">Address</p>
+            <p class="mr-2 ml-1 text-black-light">{{ restaurant.address }}</p>
+          </div>
+          <div class="flex relative  justify-between pb-[0.5rem] mb-[0.25rem] after after:w-[95%] after:h-[1px] after:bg-gray-light after:absolute after:top-[100%] after:right-[50%] after:translate-x-1/2">
+            <p class="text-black-dark">Phone</p>
+            <p class="mr-2 ml-1 text-black-light">{{ restaurant.phone }}</p>
+          </div>
+          <div class="relative  pb-[0.5rem] mb-[0.25rem] after after:w-[95%] after:h-[1px] after:bg-gray-light after:absolute after:top-[100%] after:right-[50%] after:translate-x-1/2">
+            <p class="text-black-dark">description</p>
+            <p class="mr-2 ml-1 text-black-light">{{ restaurant.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

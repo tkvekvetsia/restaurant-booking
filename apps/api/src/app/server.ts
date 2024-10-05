@@ -1,6 +1,6 @@
 import express from 'express';
 import router from './routes/routes';
-import helmet from 'helmet';
+import helmet, { crossOriginResourcePolicy } from 'helmet';
 import cors from 'cors';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
@@ -27,15 +27,11 @@ app.use(
 app.use(compression());
 
 // helmet
-app.use(helmet());
-
-// Set up rate limiter: maximum of twenty requests per minute
-const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  limit: 20,
-});
-
-app.use(limiter);
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 
 // use express.json() middleware
 app.use(express.json());
@@ -45,9 +41,23 @@ app.use(express.urlencoded({ extended: false }));
 // @ts-ignore
 app.use(
   '/api/images/',
-  express.static(path.resolve(__dirname, process.env.PATH_TO_STATIC_FOLDER))
+  cors({
+    origin: '*',
+    methods: ['GET'],
+    allowedHeaders: '*',
+    exposedHeaders: ['Content-Length'], // Expose relevant headers if needed
+    optionsSuccessStatus: 200, // Ensure successful preflight request
+  }),
+  express.static(path.resolve(__dirname, process.env.PATH_TO_STATIC_FILES))
 );
 
+// Set up rate limiter: maximum of twenty requests per minute
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  limit: 20,
+});
+
+app.use(limiter);
 app.get('/', (req, res) => {
   res.send({ message: 'Hello API' });
 });

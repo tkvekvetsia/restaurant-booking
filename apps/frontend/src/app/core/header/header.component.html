@@ -1,8 +1,8 @@
-<header class="pt-[1rem]  pb-[1rem] border-b border-gray mb-[2rem] ">
+<header class="pt-[1rem]  pb-[1rem] border-b border-gray bg-gray-light px-[1rem]">
   <nav>
     <ul class="flex gap-[1rem] ">
-      @for (item of menuItems; track $index){
-        <li >
+      @for (item of menuItems(); track $index){
+        <li>
           <a class="hover:text-primary-dark cursor-pointer"
              [routerLink]="[item.url]"
              routerLinkActive="text-primary"
@@ -10,6 +10,13 @@
           >{{item.title}}</a>
         </li>
       }
+
+      <li class="ml-auto">
+        <a class="hover:text-primary-dark cursor-pointer"
+           routerLink="login"
+           routerLinkActive="text-primary"
+        >Login</a>
+      </li>
     </ul>
   </nav>
 </header>
