@@ -1,1 +1,63 @@
-<p>register works!</p>
+<div class="flex justify-center">
+  <div class="w-4/5">
+    <rb-card>
+      <h2 class="rb-card-header text-xl mb-[3rem] text-center text-primary-dark font-bold">Register</h2>
+      <div class="rb-card-content ">
+
+        <div class="grid lg:grid-cols-2 lg:justify-between">
+
+          <rb-input-wrapper>
+            <input type="text" class="rb-input" id="name">
+            <label class="rb-label" for="name">
+              name
+            </label>
+          </rb-input-wrapper>
+
+          <rb-input-wrapper >
+            <input type="email" class="rb-input" id="email">
+            <label class="rb-label" for="email">
+              email
+            </label>
+          </rb-input-wrapper>
+
+          <rb-input-wrapper >
+            <input type="password" class="rb-input" id="password">
+            <label class="rb-label" for="password">
+              password
+            </label>
+          </rb-input-wrapper>
+
+          <rb-input-wrapper >
+            <input type="password" class="rb-input" id="confirm-password">
+            <label class="rb-label" for="confirm-password">
+              confirm password
+            </label>
+          </rb-input-wrapper>
+
+
+          <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
+            <input type="tel" class="rb-input" id="phone">
+            <label class="rb-label" for="phone">
+              phone
+            </label>
+          </rb-input-wrapper>
+
+        </div>
+        <div class="flex justify-center">
+            <rb-primary-button [label]="'Register'"
+                               [styleClass]="'p-[0.8rem]'"
+                               class="lg:w-2/3"
+            />
+        </div>
+
+
+        <p class="text-center  text-black-light my-[0.5rem] text-bold">or</p>
+
+        <rb-link-button [label]="'Log In'"
+                        [styleClass]="'w-full  font-bold'"
+                        [url]="'/auth/login'"
+        />
+      </div>
+    </rb-card>
+  </div>
+</div>

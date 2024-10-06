@@ -1,8 +1,8 @@
 <button
-  class="text-white rounded-md font-medium block {{ styleClass }}"
+  class="text-white w-full rounded-md font-medium block {{ styleClass }}"
   [ngClass]="{
-    'bg-alert-info': role === 'primary',
-    'bg-primary': role === 'secondary',
+    'bg-primary': role === 'primary',
+    'bg-alert-info': role === 'secondary',
     'bg-alert-warning ': role === 'warning',
     'bg-alert-error': role === 'error',
   }"

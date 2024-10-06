@@ -13,13 +13,11 @@ export const registerUser = async (req, res, next) => {
       password: await hashPassword(req.body.password),
     },
   })) as TokenUser;
-  const token = createJWT(user);
+  // const token = createJWT(user);
 
-  res.status(200).json({
+  res.status(201).json({
     status: 'success',
-    data: {
-      token,
-    },
+    data: null,
   });
 };
 
