@@ -5,6 +5,8 @@ module.exports = {
     },
     fontSize: {
       md: '14px',
+      xl: '20px',
+      xxl: '24px',
     },
     colors: {
       primary: {
@@ -13,6 +15,7 @@ module.exports = {
         dark: '#2e7d32', // Dark Green Active states, text accents
       },
       gray: {
+        'extra-light': '#fafafa', // Extra Light Gray (Alternate Background) Alternate background
         light: '#f5f5f5', // Light Gray (Background) Main background
         DEFAULT: '#e0e0e0', // Default Gray (Card backgrounds, borders) Sections, cards, borders
         dark: '#9e9e9e', // Dark Gray (Dividers, disabled states) Dividers, disabled states

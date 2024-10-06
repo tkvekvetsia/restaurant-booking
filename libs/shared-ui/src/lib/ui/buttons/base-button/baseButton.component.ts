@@ -13,7 +13,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseButtonComponent {
-  @Input() label = '';
+  @Input({ required: true }) label = '';
   @Input() disabled = false;
   @Input() type: ButtonType = 'button';
   @Input() styleClass = '';

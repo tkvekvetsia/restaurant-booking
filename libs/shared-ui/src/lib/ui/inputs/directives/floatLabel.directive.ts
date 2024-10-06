@@ -49,8 +49,6 @@ export class FloatLabelDirective implements AfterViewInit {
   onInput() {
     if (this.input?.value) {
       this.setFloatingLabel(true, !!this.input?.value);
-    } else {
-      // this.setFloatingLabel(false);
     }
   }
 
