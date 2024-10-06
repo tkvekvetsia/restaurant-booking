@@ -12,12 +12,14 @@ export const authRoutes: Route[] = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./login/login.component').then(c => c.LoginComponent),
+          import('./components/login/login.component').then(
+            c => c.LoginComponent
+          ),
       },
       {
         path: 'register',
         loadComponent: () =>
-          import('./register/register.component').then(
+          import('./components/register/register.component').then(
             c => c.RegisterComponent
           ),
       },
