@@ -23,6 +23,7 @@
 
 .rb-label {
   transition: ease-in-out;
+  cursor: initial;
   @apply absolute left-[13px] bottom-1/2 translate-y-1/2 text-black transition-all duration-200;
 
   &-floating {
