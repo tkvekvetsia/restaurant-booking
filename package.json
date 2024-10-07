@@ -5,7 +5,8 @@
   "scripts": {
     "serve:api:dev": "nx run api:serve:development",
     "serve:frontend:dev": "nx run frontend:serve",
-    "serve:both": " npm run serve:api:dev & npm run serve:frontend:dev"
+    "serve:business:dev": " nx run business:serve:development",
+    "serve:all": " npm run serve:api:dev & npm run serve:frontend:dev & npm run serve:business:dev"
   },
   "private": true,
   "dependencies": {
