@@ -3,4 +3,5 @@ import { environment } from './environment';
 
 export const initEnvironment = (env: EnvironmentModel) => {
   environment.apiUrl = env.apiUrl;
+  environment.apiAuthUrl = env.apiAuthUrl;
 };

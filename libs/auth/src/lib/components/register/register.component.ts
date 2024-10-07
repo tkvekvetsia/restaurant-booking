@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   CardComponent,
@@ -6,6 +6,7 @@ import {
   LinkButtonComponent,
   PrimaryButtonComponent,
 } from '@restaurant-booking/shared-ui';
+import { environment } from '@restaurant-booking/environment';
 
 @Component({
   selector: 'rb-register',
@@ -21,4 +22,8 @@ import {
   styleUrl: './register.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent {}
+export class RegisterComponent implements OnInit{
+  ngOnInit(): void {
+    console.log(environment);
+  }
+}
