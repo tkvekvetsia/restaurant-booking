@@ -24,7 +24,7 @@
         ],
         "styles": ["apps/business/src/styles.scss"],
         "scripts": [],
-        "server": "apps/business/src/main.server.ts",
+        "server": false,
         "prerender": true,
         "ssr": {
           "entry": "apps/business/server.ts"
