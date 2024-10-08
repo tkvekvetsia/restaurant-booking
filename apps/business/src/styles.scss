@@ -68,6 +68,10 @@ h3 {
   display: grid;
   gap: 1.5rem; // Gap between grid items
 }
+a{
+  display: block;
+  cursor: pointer;
+}
 
 button:disabled {
   cursor: not-allowed;

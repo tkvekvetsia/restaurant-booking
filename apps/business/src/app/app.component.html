@@ -1,5 +1,9 @@
-<main class="mt-[5rem]">
-  <aside></aside>
+<rb-side-nav />
+<main
+  [ngClass]="{
+    'mt-[5rem]': isLoggedIn(),
+    'ml-[8rem]': isLoggedIn()
+  }">
   <div>
     <router-outlet></router-outlet>
   </div>
