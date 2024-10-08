@@ -1,4 +1,21 @@
-<div rbFloatLabel class="relative w-full {{styleClass}}">
-  <ng-content select=".rb-input"></ng-content>
-  <ng-content select=".rb-label"></ng-content>
+<div class="w-full relative {{styleClass}}">
+  <div class="relative w-full" rbFloatLabel>
+    <ng-content select=".rb-input"></ng-content>
+    <ng-content select=".rb-label"></ng-content>
+  </div>
+  <span class="text-alert-error text-[0.8rem] absolute bottom-0 left-0">
+    @if (control && control.errors && control.touched) {
+      @if (control.getError('required')) {
+        field is required
+      } @else if (control.getError('email')) {
+        invalid email format
+      } @else if (control.getError('minlength')) {
+        minimum length is {{control.getError('minlength').requiredLength}}
+      } @else if (control.getError('maxlength')) {
+        maximum length is {{control.getError('maxlength').requiredLength}}
+      } @else if (control.getError('passwordsDoNotMatch')) {
+        passwords do not match
+      }
+    }
+  </span>
 </div>

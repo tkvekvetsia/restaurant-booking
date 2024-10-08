@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AllControlsAreTouchedPipe,
   CardComponent,
   InputWrapperComponent,
   LinkButtonComponent,
   PrimaryButtonComponent,
 } from '@restaurant-booking/shared-ui';
-import { environment } from '@restaurant-booking/environment';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -19,6 +19,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     PrimaryButtonComponent,
     LinkButtonComponent,
     ReactiveFormsModule,
+    AllControlsAreTouchedPipe,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -35,14 +36,14 @@ export class RegisterComponent {
     }),
   });
 
-  public onSubmit():void{
+  public onSubmit(): void {
     if (!this.registerForm.valid) {
       this.makeControlsTouched();
       return;
     }
   }
 
-  public makeControlsTouched():void{
+  public makeControlsTouched(): void {
     this.registerForm.markAllAsTouched();
   }
 

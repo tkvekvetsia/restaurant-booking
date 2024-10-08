@@ -2,3 +2,9 @@ rb-primary-button{
   width: 100%;
 }
 
+.rb-button{
+  &:disabled{
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+  }
+}

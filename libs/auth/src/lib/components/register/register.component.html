@@ -8,7 +8,7 @@
 
           <div class="col-span-2 lg:col-span-1">
             <rb-input-wrapper>
-              <input type="text" class="rb-input" id="name" formControlName="name">
+              <input type="text" class="rb-input" id="name" formControlName="name" autocomplete="off">
               <label class="rb-label" for="name">
                 name *
               </label>
@@ -57,6 +57,7 @@
                              [styleClass]="'p-[0.8rem]'"
                              class="lg:w-2/3"
                              (clickEvent)="onSubmit()"
+                             [disabled]="(registerForm | allControlsAreTouched) && registerForm.invalid"
           />
         </div>
 
