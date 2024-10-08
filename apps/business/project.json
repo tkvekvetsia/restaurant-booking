@@ -23,12 +23,7 @@
           }
         ],
         "styles": ["apps/business/src/styles.scss"],
-        "scripts": [],
-        "server": false,
-        "prerender": true,
-        "ssr": {
-          "entry": "apps/business/server.ts"
-        }
+        "scripts": []
       },
       "configurations": {
         "production": {

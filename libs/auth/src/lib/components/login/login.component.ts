@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AllControlsAreTouchedPipe,
   CardComponent,
   InputWrapperComponent,
   LinkButtonComponent,
   PrimaryButtonComponent,
 } from '@restaurant-booking/shared-ui';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthFacadeService } from '../../services/auth-facade.service';
 import { LoginReqModel } from '../../models/loginReq.model';
@@ -22,6 +23,8 @@ import { catchError, EMPTY, tap } from 'rxjs';
     CardComponent,
     PrimaryButtonComponent,
     LinkButtonComponent,
+    AllControlsAreTouchedPipe,
+    ReactiveFormsModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

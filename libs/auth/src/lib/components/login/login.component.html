@@ -2,16 +2,16 @@
   <div class="w-4/5 lg:max-w-[30rem]">
     <rb-card>
       <h2 class="rb-card-header text-xl mb-[3rem] text-center text-primary-dark font-bold">Log In</h2>
-      <div class="rb-card-content ">
+      <div class="rb-card-content " [formGroup]="loginForm">
         <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
-          <input type="email" class="rb-input" id="email">
+          <input type="email" class="rb-input" id="email" formControlName="email">
           <label class="rb-label" for="email">
             email
           </label>
         </rb-input-wrapper>
 
         <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
-          <input type="password" class="rb-input" id="password">
+          <input type="password" class="rb-input" id="password" formControlName="password">
           <label class="rb-label" for="password">
             password
           </label>
@@ -19,6 +19,8 @@
 
         <rb-primary-button [label]="'Log In'"
                            [styleClass]="'w-full p-[0.8rem]'"
+                           [disabled]="((loginForm | allControlsAreTouched) && loginForm.invalid) || waitingForLogin()"
+                           (clickEvent)="login()"
         />
 
         <p class="text-center  text-black-light my-[0.5rem] text-bold">or</p>
@@ -26,7 +28,7 @@
         <rb-link-button [label]="'Register'"
                         [styleClass]="'w-full  font-bold'"
                         [url]="'/auth/register'"
-                        />
+        />
       </div>
     </rb-card>
   </div>

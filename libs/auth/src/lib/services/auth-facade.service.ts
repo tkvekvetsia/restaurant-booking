@@ -22,7 +22,7 @@ export class AuthFacadeService {
     return this.authService.login(data).pipe(
       tap(res=> {
         if (res.status === 'success' && res.data?.token) {
-          localStorage.setItem('accessToken', res.data.token);
+          localStorage.setItem('AccessToken', res.data.token);
           location.assign('/');
         }
       })
