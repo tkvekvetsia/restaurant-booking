@@ -28,4 +28,9 @@ export class AuthService {
       data
     );
   }
+
+  public logout(navigationUrl?: string): void {
+    localStorage.removeItem('AccessToken');
+    location.assign(navigationUrl || '/');
+  }
 }

@@ -11,3 +11,6 @@ export * from './lib/state/auth/auth.state';
 export * from './lib/state/auth/auth.reducer';
 export * from './lib/state/auth/auth.actions';
 export * from './lib/state/auth/auth.selectors';
+
+// interceptors
+export * from './lib/interceptors/auth.interceptor';

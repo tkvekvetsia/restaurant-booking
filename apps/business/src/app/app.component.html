@@ -1,7 +1,9 @@
-<rb-side-nav />
+@if (isLoggedIn()){
+  <rb-side-nav />
+}
 <main
   [ngClass]="{
-    'mt-[5rem]': isLoggedIn(),
+    'mt-[5rem]': !isLoggedIn(),
     'ml-[8rem]': isLoggedIn()
   }">
   <div>
