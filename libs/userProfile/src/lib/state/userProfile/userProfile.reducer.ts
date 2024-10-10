@@ -18,7 +18,7 @@ export const userProfileReducer = createReducer(
   })),
   on(userProfileActions.getUserProfileFailure, (state, action) => ({
     ...state,
-    userProfile: {},
+    userProfile: null,
     loading: false,
     error: action.error,
   }))

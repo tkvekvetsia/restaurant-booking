@@ -16,6 +16,8 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeature } from '@restaurant-booking/auth';
 import { authInterceptor } from '@restaurant-booking/auth';
+import { getUserProfileEffect, userProfileFeature } from '@restaurant-booking/userProfile';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,5 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideState(authFeature),
+    provideState(userProfileFeature),
+    provideEffects({getUserProfileEffect})
   ],
 };
