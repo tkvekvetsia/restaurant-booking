@@ -4,18 +4,19 @@
       <h2 class="rb-card-header text-xl mb-[3rem] text-center text-primary-dark font-bold">Log In</h2>
       <div class="rb-card-content " [formGroup]="loginForm">
         <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
-          <input type="email" class="rb-input" id="email" formControlName="email">
+          <input type="email" class="rb-input" id="email" formControlName="email" (keydown.enter)="login()">
           <label class="rb-label" for="email">
             email
           </label>
         </rb-input-wrapper>
 
         <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
-          <input type="password" class="rb-input" id="password" formControlName="password">
+          <input type="password" class="rb-input" id="password" formControlName="password" (keydown.enter)="login()">
           <label class="rb-label" for="password">
             password
           </label>
         </rb-input-wrapper>
+
 
         <rb-primary-button [label]="'Log In'"
                            [styleClass]="'w-full p-[0.8rem]'"
