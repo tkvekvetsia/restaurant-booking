@@ -1,4 +1,6 @@
-<div class="bg-gray-extra-light  rounded-md p-[2.2rem]">
+<div
+  class="rounded-md p-[2.2rem]"
+  [ngClass]="{ 'bg-gray-light': bgColor === 'gray-light', 'shadow' : shadow}">
   <ng-content select=".rb-card-header"></ng-content>
   <ng-content select=".rb-card-content"></ng-content>
 </div>

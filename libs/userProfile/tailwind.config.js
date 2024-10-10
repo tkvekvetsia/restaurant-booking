@@ -1,7 +1,7 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
-const defaultTailwindConfig = require('@nx/angular/tailwind');
 const sharedTailwindConfig = require('../tailwind-preset/tailwind.config');
+const defaultTailwindConfig = require('@nx/angular/tailwind');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,6 +13,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
-  ...defaultTailwindConfig,
+  plugins: [defaultTailwindConfig],
 };

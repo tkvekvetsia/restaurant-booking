@@ -1,5 +1,5 @@
 <div class="w-full relative {{styleClass}}">
-  <div class="relative w-full" rbFloatLabel>
+  <div class="relative w-full" rbFloatLabel [inputValue]="control?.value">
     <ng-content select=".rb-input"></ng-content>
     <ng-content select=".rb-label"></ng-content>
   </div>

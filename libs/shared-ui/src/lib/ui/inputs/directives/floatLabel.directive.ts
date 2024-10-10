@@ -4,6 +4,7 @@ import {
   ElementRef,
   HostListener,
   inject,
+  Input,
   Renderer2,
 } from '@angular/core';
 
@@ -16,6 +17,12 @@ export class FloatLabelDirective implements AfterViewInit {
   private renderer = inject(Renderer2);
   private input: HTMLInputElement | null = null;
   private label: HTMLLabelElement | null = null;
+  @Input() set inputValue(value: any) {
+    this.setFloatingLabel(true, !!value);
+  }
+  constructor(
+
+  ) { }
 
   ngAfterViewInit() {
     const element = this.el.nativeElement;
@@ -28,6 +35,8 @@ export class FloatLabelDirective implements AfterViewInit {
     if (this.input?.value) {
       this.setFloatingLabel(true, true);
     }
+
+
   }
 
   // Handle input focus

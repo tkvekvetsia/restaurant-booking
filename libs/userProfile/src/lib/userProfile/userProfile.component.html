@@ -1,1 +1,75 @@
-<p>userProfile works!</p>
+<rb-card [shadow]="true" bgColor="deafult">
+  <div class="rb-card-header flex justify-center">
+    <div
+      class="w-[7rem] h-[7rem] rounded-[50%] border-gray border mb-[2rem]"></div>
+  </div>
+  <div class="rb-card-content" [formGroup]="userInfoForm">
+    <div class="flex flex-col">
+      <div class="mb-[2rem]">
+        <rb-input-wrapper>
+          <input
+            type="text"
+            class="rb-input"
+            id="name"
+            formControlName="name"
+            autocomplete="off" />
+          <label class="rb-label" for="name"> name * </label>
+        </rb-input-wrapper>
+      </div>
+
+      <div class="mb-[2rem]">
+        <rb-input-wrapper>
+          <input
+            type="email"
+            class="rb-input"
+            id="email"
+            formControlName="email" />
+          <label class="rb-label" for="email"> email * </label>
+        </rb-input-wrapper>
+      </div>
+
+      <div class="mb-[2rem]">
+        <div class="grid lg:grid-cols-2" formGroupName="passwordGroup">
+          <rb-input-wrapper>
+            <input
+              type="password"
+              class="rb-input"
+              id="password"
+              formControlName="password" />
+            <label class="rb-label" for="password"> password * </label>
+          </rb-input-wrapper>
+
+          <rb-input-wrapper>
+            <input
+              type="password"
+              class="rb-input"
+              id="confirm-password"
+              formControlName="confirmPassword" />
+            <label class="rb-label" for="confirm-password">
+              confirm password *
+            </label>
+          </rb-input-wrapper>
+        </div>
+      </div>
+
+      <div class="mb-[1rem]">
+        <rb-input-wrapper [styleClass]="'mb-[1.5rem]'">
+          <input
+            type="tel"
+            class="rb-input"
+            id="phone"
+            formControlName="phone" />
+          <label class="rb-label" for="phone"> phone </label>
+        </rb-input-wrapper>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <rb-primary-button
+        [label]="'Update'"
+        [styleClass]="'p-[0.8rem]'"
+        class="lg:w-2/3"
+        role="secondary"
+         />
+    </div>
+  </div>
+</rb-card>
