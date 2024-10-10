@@ -3,10 +3,17 @@ import { MyRestaurantsComponent } from './components/my-restaurants/my-restauran
 
 export const myRestaurantsRoutes: Route[] = [
   {
-     path: '', 
-     loadComponent: () => import('./components/my-restaurants/my-restaurants.component').then(m => m.MyRestaurantsComponent)
+    path: '',
+    loadComponent: () =>
+      import('./components/my-restaurants/my-restaurants.component').then(
+        c => c.MyRestaurantsComponent
+      ),
   },
   {
-    path:'add',
-  }
+    path: 'add',
+    loadComponent: () =>
+      import('./components/add-restaurant/add-restaurant.component').then(
+        c => c.AddRestaurantComponent
+      ),
+  },
 ];
