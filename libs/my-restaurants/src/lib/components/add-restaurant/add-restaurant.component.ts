@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   AddRestaurantFormModel,
+  Day,
   OpeningHoursFormModel,
 } from '../../models/addRestaurantForm.model';
 
@@ -15,54 +16,54 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddRestaurantComponent {
-  // public addRestaurantForm = new FormGroup<AddRestaurantFormModel>({
-  //   name: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   description: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   address: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   phone: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   email: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   city: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   state: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   postalCode: new FormControl('', {
-  //     nonNullable: true,
-  //     validators: [Validators.required],
-  //   }),
-  //   latitude: new FormControl(null, [Validators.required]),
-  //   longitude: new FormControl(null, [Validators.required]),
-  //   openingHours: new FormArray<FormGroup<OpeningHoursFormModel>>([
-  //     new FormGroup({
-  //       day: new FormControl('monday'),
-  //       open: new FormControl('', {
-  //         nonNullable: true,
-  //         validators: [Validators.required],
-  //       }),
-  //       close: new FormControl('', {
-  //         nonNullable: true,
-  //         validators: [Validators.required],
-  //       }),
-  //     }),
-  //   ]),
-  //   capacity: new FormControl<number | null>(null),
-  // });
+  public addRestaurantForm = new FormGroup<AddRestaurantFormModel>({
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    address: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    city: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    state: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    postalCode: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    latitude: new FormControl(null, [Validators.required]),
+    longitude: new FormControl(null, [Validators.required]),
+    openingHours: new FormArray<FormGroup<OpeningHoursFormModel>>([
+      new FormGroup({
+        day: new FormControl<Day>('monday', { nonNullable: true }),
+        open: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        close: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      }),
+    ]),
+    capacity: new FormControl<number | null>(null),
+  });
 }
