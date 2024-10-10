@@ -4,7 +4,7 @@ import {
   isDevMode,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { appRoutes } from './app.routes';
 import {
   provideHttpClient,
@@ -18,10 +18,15 @@ import { authFeature } from '@restaurant-booking/auth';
 import { authInterceptor } from '@restaurant-booking/auth';
 import { getUserProfileEffect, userProfileFeature } from '@restaurant-booking/userProfile';
 import { provideEffects } from '@ngrx/effects';
+import {  getMyRestaurantsEffect, myRestaurantsFeature } from '@restaurant-booking/my-restaurants';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes),
+    provideRouter(appRoutes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     {
       provide: APP_INITIALIZER,
@@ -34,6 +39,7 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideState(authFeature),
     provideState(userProfileFeature),
-    provideEffects({getUserProfileEffect})
+    provideState(myRestaurantsFeature),
+    provideEffects({getUserProfileEffect, getMyRestaurantsEffect})
   ],
 };

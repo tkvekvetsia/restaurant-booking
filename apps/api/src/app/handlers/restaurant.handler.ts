@@ -42,14 +42,14 @@ export const getRestaurants = async (req, res, next) => {
       address: { contains: address, mode: 'insensitive' },
       menus: dish
         ? {
-            some: {
-              menuItems: {
-                some: {
-                  name: { contains: dish, mode: 'insensitive' },
-                },
+          some: {
+            menuItems: {
+              some: {
+                name: { contains: dish, mode: 'insensitive' },
               },
             },
-          }
+          },
+        }
         : undefined,
     },
     orderBy: sortBy,
@@ -158,3 +158,22 @@ export const deleteRestaurantById = async (req, res, next) => {
     data: null,
   });
 };
+
+
+export const getOwnedRestaurants = async (req, res, next) => {
+    const restaurants = await prisma.restaurant.findMany({
+      where: {
+        ownerId: req.user.id,
+      },
+    });
+
+
+    const restaurantDtos =!restaurants ?  []:restaurants.map(res => toRestaurantDto(res));
+    res.status(200).json({
+      status: 'success',
+      data: {
+        restaurants: restaurantDtos,
+      },
+    });
+  
+}

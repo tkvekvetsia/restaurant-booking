@@ -22,10 +22,12 @@ export class SideNavComponent implements OnInit {
   public userProfile = toSignal(this.store.select(selectUserProfile));
   public loadingUserProfile = toSignal(this.store.select(selectUserProfileLoading));
 
-  public menuItems = signal<MenuItem[]>([{
-    url:'/restaurants',
-    label: 'My Restaurants',
-  }])
+  public menuItems = signal<MenuItem[]>([
+    {
+      url: '/restaurants',
+      label: 'My Restaurants',
+    }
+  ])
 
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class SideNavComponent implements OnInit {
   }
 }
 
- interface MenuItem  {
+interface MenuItem {
   url: string;
   label: string;
 }

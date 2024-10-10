@@ -21,14 +21,18 @@ export const appRoutes: Route[] = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('@restaurant-booking/auth').then(a => a.authRoutes),
+      import('@restaurant-booking/auth').then(r => r.authRoutes),
     canMatch: [notAuthGuard],
   },
 
   {
     path: 'profile',
     loadChildren: () =>
-      import('@restaurant-booking/userProfile').then(c => c.userProfileRoutes),
+      import('@restaurant-booking/userProfile').then(r => r.userProfileRoutes),
     canMatch: [authGuard],
   },
+  {
+    path:'restaurants',
+    loadChildren: () => import('@restaurant-booking/my-restaurants').then(r => r.myRestaurantsRoutes)
+  }
 ];
