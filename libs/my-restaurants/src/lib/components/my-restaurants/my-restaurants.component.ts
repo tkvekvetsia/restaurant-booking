@@ -2,8 +2,8 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectMyRestaurants, selectMyRestaurantsLoading } from '../state/my-restaurants/myRestaurants.selectors';
-import { myRestaurantsActions } from '../state/my-restaurants/myRestaurants.actions';
+import { selectMyRestaurants, selectMyRestaurantsLoading } from '../../state/my-restaurants/myRestaurants.selectors';
+import { myRestaurantsActions } from '../../state/my-restaurants/myRestaurants.actions';
 import { CardComponent, LinkButtonComponent } from '@restaurant-booking/shared-ui';
 
 @Component({
