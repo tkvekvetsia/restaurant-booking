@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthStatusHelperService {
-
   public isUserLoggedIn(): boolean {
     const accessToken = localStorage.getItem('AccessToken');
     const helper = new JwtHelperService();
@@ -23,11 +22,6 @@ export class AuthStatusHelperService {
       accessTokenIsValid = false;
       accessTokenIsExpired = null;
     }
-
-    if (accessTokenIsValid && !accessTokenIsExpired) {
-      return true;
-    }
-
 
     return !!accessToken && accessTokenIsValid && !accessTokenIsExpired;
   }

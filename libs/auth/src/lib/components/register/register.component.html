@@ -2,7 +2,7 @@
   <div class="w-4/5" [formGroup]="registerForm">
     <rb-card>
       <h2 class="rb-card-header text-xl mb-[3rem] text-center text-primary-dark font-bold">Register</h2>
-      <div class="rb-card-content ">
+      <div class="rb-card-content " >
 
         <div class="grid lg:grid-cols-2 lg:justify-between">
 
@@ -57,7 +57,7 @@
                              [styleClass]="'p-[0.8rem]'"
                              class="lg:w-2/3"
                              (clickEvent)="onSubmit()"
-                             [disabled]="(registerForm | allControlsAreTouched) && registerForm.invalid"
+                             [disabled]="((registerForm | allControlsAreTouched) && registerForm.invalid) || waitingForRegistration()"
           />
         </div>
 

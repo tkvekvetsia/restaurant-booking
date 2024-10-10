@@ -1,5 +1,8 @@
 import { Route } from '@angular/router';
-import { AuthStatusHelperService, notAuthGuard } from '@restaurant-booking/auth';
+import {
+  AuthStatusHelperService,
+  notAuthGuard,
+} from '@restaurant-booking/auth';
 import { inject } from '@angular/core';
 
 export const appRoutes: Route[] = [
@@ -7,7 +10,9 @@ export const appRoutes: Route[] = [
     path: '',
     redirectTo: () => {
       const authStatusHelperService = inject(AuthStatusHelperService);
-      return authStatusHelperService.isUserLoggedIn() ? 'ums' : 'auth/login';
+      return authStatusHelperService.isUserLoggedIn()
+        ? 'dashboard'
+        : 'auth/login';
     },
     pathMatch: 'full',
   },
@@ -16,6 +21,6 @@ export const appRoutes: Route[] = [
     path: 'auth',
     loadChildren: () =>
       import('@restaurant-booking/auth').then(a => a.authRoutes),
-    canMatch:[notAuthGuard]
+    canMatch: [notAuthGuard],
   },
 ];

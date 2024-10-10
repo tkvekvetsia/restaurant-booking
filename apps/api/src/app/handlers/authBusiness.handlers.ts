@@ -14,13 +14,10 @@ export const registerUserAsBusiness = async (req, res, next) => {
       role: 'business',
     },
   })) as TokenUser;
-  const token = createJWT(user);
 
   res.status(200).json({
     status: 'success',
-    data: {
-      token,
-    },
+    data: null,
   });
 };
 
