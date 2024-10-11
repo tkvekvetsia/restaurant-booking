@@ -1,6 +1,6 @@
 <rb-card bgColor="deafult" [shadow]="true">
   <h2 class="rb-card-header text-center font-bold text-[1.2rem] mb-[2rem]">Add new restaurant</h2>
   <div class="rb-card-content" [formGroup]="addRestaurantForm">
-    <rb-restaurant-form [controlKey]="RESTAURANT_FORM_CONTROL_KEY" />
+    <rb-restaurant-form [controlKey]="RESTAURANT_FORM_CONTROL_KEY" (formSubmitted)="onSubmitForm()"/>
   </div>
 </rb-card>

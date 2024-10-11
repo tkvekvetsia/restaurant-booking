@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   inject,
   Input,
   OnInit,
+  Output,
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -51,6 +53,8 @@ export class RestaurantFormComponent implements OnInit {
   private controlContainer = inject(ControlContainer);
 
   @Input({ required: true }) controlKey = '';
+  @Input() waitingForCreate = false;
+  @Output() formSubmitted = new EventEmitter();
 
   public restaurantForm = new FormGroup<restaurantFormModel>({
     name: new FormControl('', {
@@ -100,11 +104,19 @@ export class RestaurantFormComponent implements OnInit {
   }
 
   public steps = signal([1, 2]);
-  public selectedStep = signal(2);
+  public selectedStep = signal(1);
 
   public onNextClick(): void {
     if (this.selectedStep() !== this.steps().length) {
       this.selectedStep.set(this.selectedStep() + 1);
+      return;
+    }
+
+    if (this.selectedStep() === 1) {
+      this.restaurantForm.markAllAsTouched();
+    }
+    if (this.selectedStep() === this.steps().length) {
+      this.formSubmitted.emit();
     }
   }
 
@@ -112,5 +124,43 @@ export class RestaurantFormComponent implements OnInit {
     if (this.selectedStep() !== 1) {
       this.selectedStep.set(this.selectedStep() - 1);
     }
+  }
+
+  fillForm() {
+    // formData.append('name', 'Restaurant ' + nameCount);
+    // formData.append('description', `Restaurant ${nameCount} description`);
+    // formData.append('address', '123 Main St');
+    // formData.append('city', 'San Francisco');
+    // formData.append('state', 'CA');
+    // formData.append('postalCode', '94105');
+    // formData.append('latitude', 37.789668);
+    // formData.append('longitude', -122.400558);
+    // // formData.append('phone', '123-456-7890');
+    // formData.append('email', 'test@gmail.com');
+    // formData.append('capacity', 100);
+    // formData.append('phone', '599999999');
+    // formData.append('openingHours', JSON.stringify(openingHours));
+    this.restaurantForm.patchValue({
+      name: 'Restaurant Name',
+      description: 'Description',
+      address: 'Address',
+      phone: '123-456-7890',
+      email: 'tes-busines@gmail.com',
+      city: 'San Francisco',
+      state: 'CA',
+      postalCode: '94105',
+      latitude: 37.789668,
+      longitude: -122.400558,
+      capacity: 100,
+      openingHours: [
+        { day: 'monday', open: '09:00', close: '17:00' },
+        { day: 'tuesday', open: '09:00', close: '17:00' },
+        { day: 'wednesday', open: '09:00', close: '17:00' },
+        { day: 'thursday', open: '09:00', close: '17:00' },
+        { day: 'friday', open: '09:00', close: '17:00' },
+        { day: 'saturday', open: '09:00', close: '17:00' },
+        { day: 'sunday', open: '09:00', close: '17:00' },
+      ],
+    });
   }
 }

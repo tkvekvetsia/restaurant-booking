@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
+import { Component, ContentChild, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FloatLabelDirective } from '../../directives/floatLabel.directive';
 import { NgControl } from '@angular/forms';
@@ -13,6 +13,5 @@ import { NgControl } from '@angular/forms';
 export class InputWrapperComponent {
   @Input() styleClass = '';
 
-  @ContentChild(NgControl) control!:NgControl | null;
-
+  @ContentChild(NgControl) control!: NgControl | null;
 }

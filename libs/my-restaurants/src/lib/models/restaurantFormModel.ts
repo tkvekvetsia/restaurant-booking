@@ -22,6 +22,12 @@ export interface OpeningHoursFormModel {
   close: FormControl<string>;
 }
 
+export interface OpeningHoursFormValue {
+  day: Day;
+  open: string;
+  close: string;
+}
+
 export type Day =
   | 'monday'
   | 'tuesday'

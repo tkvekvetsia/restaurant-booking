@@ -20,23 +20,20 @@ export class FloatLabelDirective implements AfterViewInit {
   @Input() set inputValue(value: any) {
     this.setFloatingLabel(true, !!value);
   }
-  constructor(
-
-  ) { }
+  constructor() {}
 
   ngAfterViewInit() {
     const element = this.el.nativeElement;
 
     // Find the input and label elements inside the container
-    this.input = element.querySelector('input');
+    this.input =
+      element.querySelector('input') || element.querySelector('textarea');
     this.label = element.querySelector('label');
 
     // Initialize label state (in case the input already has a value)
     if (this.input?.value) {
       this.setFloatingLabel(true, true);
     }
-
-
   }
 
   // Handle input focus
