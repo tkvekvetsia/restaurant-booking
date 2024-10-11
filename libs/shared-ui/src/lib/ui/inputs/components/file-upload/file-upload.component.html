@@ -1,0 +1,35 @@
+<div>
+  <label for="invoice" class="flex  cursor-pointer items-center justify-center border rounded-md">
+    choose file
+  </label>
+  <input type="file"
+         class="form-control"
+         id="invoice"
+         (change)="onFileSelected($event)"
+         #fileInput
+         [multiple]="multiple" hidden
+         [accept]="acceptedFileFormats"
+  >
+
+  <ng-container *ngFor="let file of uploadedFiles">
+    <div class="file-group flex justify-between items-center">
+      <span>{{ file.name  }}</span>
+      <button  (click)="removeFile(file)">X</button>
+    </div>
+  </ng-container>
+
+  @if (fileFormatInvalid() || fileSizeInvalid()) {
+    <span class="text-alert-error"
+          [ngClass]="{'opacity-100' : fileFormatInvalid() || fileSizeInvalid(),'mt-0' : fileFormatInvalid() || fileSizeInvalid()}"
+    >
+        @if (fileSizeInvalid()) {
+          {{ "THE_SIZE_OF_THE_FILES_SHOULD_NOT_EXCEED_5MB"  }}
+          <br/>
+        }
+
+      @if(fileFormatInvalid()){
+        {{ "INVALID_FILE_FORMAT"  }}
+      }
+      </span>
+  }
+</div>

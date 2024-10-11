@@ -83,6 +83,8 @@
           formControlName="description"></textarea>
         <label class="rb-label" for="description"> description </label>
       </rb-input-wrapper>
+
+      <rb-file-upload [fileFormats]="['.png', '.jpeg', '.jpg']" formControlName="img" />
     </div>
   </div>
   <div [hidden]="selectedStep() === 1">

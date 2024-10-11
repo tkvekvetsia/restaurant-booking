@@ -17,10 +17,10 @@ import {
 } from '@angular/forms';
 import {
   restaurantFormModel,
-  Day,
   OpeningHoursFormModel,
 } from '../../models/restaurantFormModel';
 import {
+  FileUploadComponent,
   InputWrapperComponent,
   PrimaryButtonComponent,
 } from '@restaurant-booking/shared-ui';
@@ -35,6 +35,7 @@ import { OpeningHoursFormComponent } from '../opening-hours-form/opening-hours-f
     InputWrapperComponent,
     PrimaryButtonComponent,
     OpeningHoursFormComponent,
+    FileUploadComponent,
   ],
   templateUrl: './restaurant-form.component.html',
   styleUrl: './restaurant-form.component.scss',
