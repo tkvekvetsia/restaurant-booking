@@ -100,7 +100,7 @@ export class RestaurantFormComponent implements OnInit {
   }
 
   public steps = signal([1, 2]);
-  public selectedStep = signal(1);
+  public selectedStep = signal(2);
 
   public onNextClick(): void {
     if (this.selectedStep() !== this.steps().length) {

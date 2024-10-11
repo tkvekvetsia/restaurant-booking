@@ -1,1 +1,25 @@
-<p>opening-hours-form works!</p>
+<div [formGroup]="openingHoursForm">
+  @for (control of openingHoursFormArr().controls; track $index) {
+    <div [formGroup]="control" class="mb-[1rem]">
+      <p class="text-black mb-[0.5rem]">{{ control.get('day')?.value }}</p>
+      <div class="grid grid-cols-2">
+        <rb-input-wrapper>
+          <input
+            type="text"
+            class="rb-input"
+            [id]="'open'+$index"
+            formControlName="open"/>
+          <label class="rb-label" [for]="'open' + $index"> open </label>
+        </rb-input-wrapper>
+        <rb-input-wrapper>
+          <input
+            type="text"
+            class="rb-input"
+            [id]="'close' + $index"
+            formControlName="open"/>
+          <label class="rb-label" [for]="'close' + $index"> close </label>
+        </rb-input-wrapper>
+      </div>
+    </div>
+  }
+</div>

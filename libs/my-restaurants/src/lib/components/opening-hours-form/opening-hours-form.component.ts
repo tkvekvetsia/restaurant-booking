@@ -11,14 +11,16 @@ import {
   FormArray,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Day, OpeningHoursFormModel } from '../../models/restaurantFormModel';
+import { InputWrapperComponent } from '@restaurant-booking/shared-ui';
 
 @Component({
   selector: 'rb-opening-hours-form',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, InputWrapperComponent],
   templateUrl: './opening-hours-form.component.html',
   styleUrl: './opening-hours-form.component.scss',
   viewProviders: [
@@ -55,7 +57,7 @@ export class OpeningHoursFormComponent implements OnInit {
     );
   }
 
-  private openingHoursFormArr(): FormArray<FormGroup<OpeningHoursFormModel>> {
+  public openingHoursFormArr(): FormArray<FormGroup<OpeningHoursFormModel>> {
     return this.openingHoursForm.get('openingHours') as FormArray<
       FormGroup<OpeningHoursFormModel>
     >;
@@ -70,11 +72,9 @@ export class OpeningHoursFormComponent implements OnInit {
       day: new FormControl<Day>(day, { nonNullable: true }),
       open: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required],
       }),
       close: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required],
       }),
     });
   }
