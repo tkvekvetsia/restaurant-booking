@@ -19,12 +19,15 @@ import {
 import {
   CardComponent,
   InputWrapperComponent,
+  SuccessComponent,
 } from '@restaurant-booking/shared-ui';
 import { RestaurantFormComponent } from '../restaurant-form/restaurant-form.component';
 import { RestaurantManagementFacadeService } from '../../services/restaurant-management-facade.service';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { OpeningHours } from '@restaurant-booking/shared-types';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'rb-add-restaurant',
   standalone: true,
@@ -34,6 +37,7 @@ import { OpeningHours } from '@restaurant-booking/shared-types';
     ReactiveFormsModule,
     InputWrapperComponent,
     RestaurantFormComponent,
+    SuccessComponent,
   ],
   templateUrl: './add-restaurant.component.html',
   styleUrl: './add-restaurant.component.scss',
@@ -48,6 +52,7 @@ export class AddRestaurantComponent {
   public readonly RESTAURANT_FORM_CONTROL_KEY = 'restaurant';
 
   public waitingForCreate = signal(false);
+  public showSuccessMessage = signal(false);
 
   public onSubmitForm(): void {
     if (!this.restaurantForm.valid || this.waitingForCreate()) {
@@ -58,11 +63,18 @@ export class AddRestaurantComponent {
     this.restaurantManagementFacadeService
       .createRestaurant(this.generateRestaurantRequest())
       .pipe(
-        tap(() => this.waitingForCreate.set(false)),
+        tap(res => {
+          this.waitingForCreate.set(false);
+          if (res.status === 'success') {
+            this.addRestaurantForm.reset();
+            this.showSuccessMessage.set(true);
+          }
+        }),
         catchError(() => {
           this.waitingForCreate.set(false);
           return EMPTY;
-        })
+        }),
+        untilDestroyed(this)
       )
       .subscribe();
   }

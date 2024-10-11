@@ -144,7 +144,7 @@ export class RestaurantFormComponent implements OnInit {
       name: 'Restaurant Name',
       description: 'Description',
       address: 'Address',
-      phone: '123-456-7890',
+      phone: '555646464',
       email: 'tes-busines@gmail.com',
       city: 'San Francisco',
       state: 'CA',
