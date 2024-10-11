@@ -1,0 +1,37 @@
+{
+  "name": "userProfile",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/userProfile/src",
+  "prefix": "rb",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/userProfile/ng-package.json",
+        "tailwindConfig": "libs/userProfile/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/userProfile/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/userProfile/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/userProfile/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

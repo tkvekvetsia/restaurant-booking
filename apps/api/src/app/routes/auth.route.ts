@@ -14,12 +14,5 @@ const router = Router();
 router.post('/register', validateRegistration, catchAsync(registerUser));
 router.post('/login', validateLogin, catchAsync(login));
 
-// admin
-router.post(
-  'business/register',
-  validateRegistration,
-  catchAsync(registerUserAsBusiness)
-);
-router.post('/business/login', validateLogin, catchAsync(loginAsBusiness));
 
 export { router as authRouter };

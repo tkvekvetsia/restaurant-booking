@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "./../../../libs/shared-ui/src/lib/shared-ui";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  @apply bg-white text-black px-[2rem] md:px-[6rem] min-h-[100vh] min-h-dvh pb-[3rem] relative;
+}
+
+h1,
+h2,
+h3 {
+  @apply text-black-dark;
+}
+
+.button-primary {
+  @apply bg-primary text-white hover:bg-primary-light active:bg-primary-dark;
+}
+
+.card {
+  @apply border-[1px] border-solid border-gray bg-gray-light rounded-[0.5rem] px-[1.5rem] py-[1rem];
+}
+
+.alert-error {
+  @apply bg-alert-error text-white;
+}
+
+// Example Text Spacing
+//h1,
+//h2,
+//h3 {
+//  margin-bottom: 1rem;
+//  line-height: 1.5;
+//}
+
+//p {
+//  margin-bottom: 1rem; // Spacing between paragraphs
+//}
+
+// Example Component Spacing
+.button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem; // Spacing between buttons
+}
+
+.form-field {
+  margin-bottom: 1rem; // Spacing between form fields
+}
+
+// Example Layout Spacing
+.container {
+  padding: 1rem 2rem; // Padding around main content
+}
+
+.section {
+  margin-bottom: 3rem; // Spacing between sections
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem; // Gap between grid items
+}
+a{
+  display: block;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

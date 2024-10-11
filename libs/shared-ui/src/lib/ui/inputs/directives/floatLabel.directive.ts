@@ -4,6 +4,7 @@ import {
   ElementRef,
   HostListener,
   inject,
+  Input,
   Renderer2,
 } from '@angular/core';
 
@@ -16,12 +17,17 @@ export class FloatLabelDirective implements AfterViewInit {
   private renderer = inject(Renderer2);
   private input: HTMLInputElement | null = null;
   private label: HTMLLabelElement | null = null;
+  @Input() set inputValue(value: any) {
+    this.setFloatingLabel(true, !!value);
+  }
+  constructor() {}
 
   ngAfterViewInit() {
     const element = this.el.nativeElement;
 
     // Find the input and label elements inside the container
-    this.input = element.querySelector('input');
+    this.input =
+      element.querySelector('input') || element.querySelector('textarea');
     this.label = element.querySelector('label');
 
     // Initialize label state (in case the input already has a value)

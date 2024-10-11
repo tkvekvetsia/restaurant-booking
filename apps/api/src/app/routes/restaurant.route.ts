@@ -3,6 +3,7 @@ import { validateCreateRestaurant, validateGetRestaurant } from '../validators';
 import {
   createRestaurant,
   deleteRestaurantById,
+  getOwnedRestaurants,
   getRestaurantById,
   getRestaurants,
 } from '../handlers';
@@ -18,6 +19,7 @@ const router = Router();
 
 // routes for customer
 
+router.get('/ownedByUser', [authorizationMiddleware, isBusiness], catchAsync(getOwnedRestaurants))
 router.get('/', validateGetRestaurant, catchAsync(getRestaurants));
 router.get('/:id', param('id').trim(), catchAsync(getRestaurantById));
 
@@ -38,5 +40,6 @@ router.delete(
   [authorizationMiddleware, isBusiness, param('id').trim()],
   catchAsync(deleteRestaurantById)
 );
+
 
 export { router as restaurantRouter };

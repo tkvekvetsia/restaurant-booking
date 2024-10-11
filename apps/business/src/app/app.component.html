@@ -1,0 +1,12 @@
+@if (isLoggedIn()){
+  <rb-side-nav />
+}
+<main
+  class="mt-[2rem]" 
+  [ngClass]="{
+    'ml-[8rem]': isLoggedIn()
+  }">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</main>

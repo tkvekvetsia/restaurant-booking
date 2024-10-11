@@ -1,0 +1,116 @@
+<div [formGroup]="restaurantForm">
+  <div [hidden]="selectedStep() === 2">
+    <div class="grid grid-cols-2">
+      <rb-input-wrapper>
+        <input
+          type="text"
+          class="rb-input"
+          id="restaurant-name"
+          formControlName="name" />
+        <label class="rb-label" for="restaurant-name"> name </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input
+          type="text"
+          class="rb-input"
+          id="address"
+          formControlName="address" />
+        <label class="rb-label" for="address"> address </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input type="tel" class="rb-input" id="phone" formControlName="phone" />
+        <label class="rb-label" for="phone"> phone </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input
+          type="email"
+          class="rb-input"
+          id="email"
+          formControlName="email"
+          autocomplete="off" />
+        <label class="rb-label" for="email"> email </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input type="text" class="rb-input" id="city" formControlName="city" />
+        <label class="rb-label" for="city"> city </label>
+      </rb-input-wrapper>
+      <rb-input-wrapper>
+        <input
+          type="text"
+          class="rb-input"
+          id="state"
+          formControlName="state" />
+        <label class="rb-label" for="state"> state </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input
+          type="text"
+          class="rb-input"
+          id="postal-code"
+          formControlName="postalCode" />
+        <label class="rb-label" for="postal-code"> postal code </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input
+          type="number"
+          class="rb-input"
+          id="latitude"
+          formControlName="latitude" />
+        <label class="rb-label" for="latitude"> latitude </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper>
+        <input
+          type="number"
+          class="rb-input"
+          id="longitude"
+          formControlName="longitude" />
+        <label class="rb-label" for="longitude"> longitude </label>
+      </rb-input-wrapper>
+
+      <rb-input-wrapper class="col-span-2">
+        <textarea
+          type="text"
+          class="rb-input"
+          id="description"
+          formControlName="description"></textarea>
+        <label class="rb-label" for="description"> description </label>
+      </rb-input-wrapper>
+
+      <rb-file-upload
+        [fileFormats]="['.png', '.jpeg', '.jpg']"
+        formControlName="img" />
+    </div>
+  </div>
+  <div [hidden]="selectedStep() === 1">
+    <rb-opening-hours-form />
+  </div>
+
+  <div class="flex mt-[1rem]">
+    @if (selectedStep() === 2){
+    <rb-primary-button
+      [label]="'previous'"
+      [styleClass]="'w-auto px-[2rem] py-[0.8rem]'"
+      (clickEvent)="onPreviousClick()"
+      role="default" />
+    }
+    <rb-primary-button
+      [label]="'next'"
+      [styleClass]="'w-auto px-[2rem] py-[0.8rem]'"
+      [disabled]="
+        (waitingForCreate || !restaurantForm.valid) &&
+        selectedStep() === steps().length
+      "
+      class="w-auto ms-auto"
+      (clickEvent)="onNextClick()" />
+  </div>
+
+
+  <button (click)="fillForm()">fill Form</button>
+</div>

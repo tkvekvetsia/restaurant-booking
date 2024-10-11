@@ -1,10 +1,11 @@
 <button
-  class="text-white w-full rounded-md font-medium block {{ styleClass }}"
+  class="rb-button text-white  w-full rounded-md font-medium block {{ styleClass }}"
   [ngClass]="{
     'bg-primary': role === 'primary',
     'bg-alert-info': role === 'secondary',
     'bg-alert-warning ': role === 'warning',
     'bg-alert-error': role === 'error',
+    'shadow text-black': role ==='default'
   }"
   [disabled]="disabled || waiting"
   (click)="clickEvent.emit($event)"

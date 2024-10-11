@@ -5,7 +5,8 @@
   "scripts": {
     "serve:api:dev": "nx run api:serve:development",
     "serve:frontend:dev": "nx run frontend:serve",
-    "serve:both": " npm run serve:api:dev & npm run serve:frontend:dev"
+    "serve:business:dev": " nx run business:serve:development",
+    "serve:all": " npm run serve:api:dev & npm run serve:frontend:dev & npm run serve:business:dev"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,8 @@
     "@angular/platform-server": "~18.2.0",
     "@angular/router": "~18.2.0",
     "@angular/ssr": "~18.2.0",
+    "@auth0/angular-jwt": "^5.2.0",
+    "@ngneat/until-destroy": "^10.0.0",
     "@ngrx/effects": "^18.0.2",
     "@ngrx/router-store": "^18.0.2",
     "@ngrx/store": "^18.0.2",

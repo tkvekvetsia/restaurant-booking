@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User } from '@restaurant-booking/shared-types';
 
 export interface LoginResModel {
   token: string;

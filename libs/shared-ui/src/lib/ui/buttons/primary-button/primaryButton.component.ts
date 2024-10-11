@@ -14,4 +14,4 @@ export class PrimaryButtonComponent extends BaseButtonComponent {
   @Input() role: ButtonRole = 'primary';
 }
 
-type ButtonRole = 'primary' | 'secondary' | 'warning' | 'error';
+type ButtonRole = 'primary' | 'secondary' | 'warning' | 'error' | 'default';
