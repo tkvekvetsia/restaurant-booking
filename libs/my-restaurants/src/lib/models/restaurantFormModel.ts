@@ -1,6 +1,6 @@
 import { FormControl, FormArray, FormGroup } from '@angular/forms';
 
-export interface AddRestaurantFormModel {
+export interface restaurantFormModel {
   name: FormControl<string>;
   address: FormControl<string>;
   phone: FormControl<string>;
@@ -13,6 +13,7 @@ export interface AddRestaurantFormModel {
   longitude: FormControl<number | null>;
   openingHours: FormArray<FormGroup<OpeningHoursFormModel>>;
   capacity: FormControl<number | null>;
+  img: FormControl<File | null>;
 }
 
 export interface OpeningHoursFormModel {

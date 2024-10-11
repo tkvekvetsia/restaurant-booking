@@ -1,69 +1,55 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
-  AddRestaurantFormModel,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  AbstractControl,
+  ControlContainer,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  restaurantFormModel,
   Day,
   OpeningHoursFormModel,
-} from '../../models/addRestaurantForm.model';
+} from '../../models/restaurantFormModel';
+import {
+  CardComponent,
+  InputWrapperComponent,
+} from '@restaurant-booking/shared-ui';
+import { RestaurantFormComponent } from '../restaurant-form/restaurant-form.component';
 
 @Component({
   selector: 'rb-add-restaurant',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    CardComponent,
+    ReactiveFormsModule,
+    InputWrapperComponent,
+    RestaurantFormComponent,
+  ],
   templateUrl: './add-restaurant.component.html',
   styleUrl: './add-restaurant.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddRestaurantComponent {
-  public addRestaurantForm = new FormGroup<AddRestaurantFormModel>({
-    name: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    description: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    address: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    phone: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    city: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    state: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    postalCode: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    latitude: new FormControl(null, [Validators.required]),
-    longitude: new FormControl(null, [Validators.required]),
-    openingHours: new FormArray<FormGroup<OpeningHoursFormModel>>([
-      new FormGroup({
-        day: new FormControl<Day>('monday', { nonNullable: true }),
-        open: new FormControl('', {
-          nonNullable: true,
-          validators: [Validators.required],
-        }),
-        close: new FormControl('', {
-          nonNullable: true,
-          validators: [Validators.required],
-        }),
-      }),
-    ]),
-    capacity: new FormControl<number | null>(null),
-  });
+export class AddRestaurantComponent implements AfterViewInit {
+  public addRestaurantForm = new FormGroup({});
+  public readonly RESTAURANT_FORM_CONTROL_KEY = 'restaurant';
+
+  private get restaurantForm(): AbstractControl<restaurantFormModel> {
+    return this.addRestaurantForm.get(
+      this.RESTAURANT_FORM_CONTROL_KEY
+    ) as AbstractControl<restaurantFormModel>;
+  }
+
+  ngAfterViewInit() {
+    console.log(this.restaurantForm);
+  }
 }
