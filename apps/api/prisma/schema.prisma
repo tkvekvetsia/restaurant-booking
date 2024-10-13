@@ -79,13 +79,15 @@ model Restaurant {
 }
 
 model Menu {
-  id           String    @id @default(uuid())
-  restaurantId String
-  name         String    @db.VarChar(255)
-  description  String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime? // Soft delete
+  id               String    @id @default(uuid())
+  restaurantId     String
+  restaurantName   String
+  restaurantAvatar String
+  name             String    @db.VarChar(255)
+  description      String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime? // Soft delete
 
   // Relations
   restaurant Restaurant @relation(fields: [restaurantId], references: [id]) // Menu belongs to a restaurant
