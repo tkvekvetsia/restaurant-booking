@@ -1,4 +1,4 @@
-<rb-card bgColor="deafult" [shadow]="true">
+<div >
   <h2 class="rb-card-header text-center font-bold text-[1.2rem] mb-[2rem]">Add new restaurant</h2>
   <div class="rb-card-content" [formGroup]="addRestaurantForm">
     @if (!showSuccessMessage()){
@@ -7,4 +7,4 @@
       <rb-success [linkText]="'Back to restaurants'" [linkUrl]="'/restaurants'" [message]="'Restaurant added Successfully'"/>
     }
   </div>
-</rb-card>
+</div>

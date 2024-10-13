@@ -4,7 +4,7 @@ import {
   isDevMode,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { appRoutes } from './app.routes';
 import {
   provideHttpClient,
@@ -26,6 +26,7 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
       }),
+      withComponentInputBinding()
     ),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     {

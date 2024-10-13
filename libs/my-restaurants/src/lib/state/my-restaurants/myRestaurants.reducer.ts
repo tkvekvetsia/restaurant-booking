@@ -21,6 +21,25 @@ export const myRestaurantsReducer = createReducer(
         myRestaurants: [],
         loading: false,
         error: action.error,
-    }))
+    })),
+
+    on( myRestaurantsActions.getRestaurantDetailsById, (state, action) => ({
+        ...state,
+        restaurant: null,
+        loadingRestaurant: true,
+        errorRestaurant: '',
+    })),
+    on( myRestaurantsActions.getRestaurantDetailsByIdSuccess, (state, action) => ({
+        ...state,
+        restaurant: action.restaurant,
+        loadingRestaurant: false,
+        errorRestaurant: '',
+    })),
+    on( myRestaurantsActions.getRestaurantDetailsByIdFailure, (state, action) => ({
+        ...state,
+        restaurant: null,
+        loadingRestaurant: false,
+        errorRestaurant: action.error,
+    })),
     
 );

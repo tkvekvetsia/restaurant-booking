@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   CoreResponse,
   GetRestaurantsModel,
+  Restaurant,
 } from '@restaurant-booking/shared-types';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class RestaurantManagementFacadeService {
 
   public createRestaurant(data: FormData): Observable<CoreResponse<null>> {
     return this.restaurantManagementService.createRestaurant(data);
+  }
+
+  public getRestaurantDetailsById(id: string): Observable<CoreResponse<{restaurant:Restaurant}>> {
+    return this.restaurantManagementService.getRestaurantDetailsById(id);
   }
 }

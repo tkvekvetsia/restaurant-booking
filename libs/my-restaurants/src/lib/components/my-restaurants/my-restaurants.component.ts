@@ -10,12 +10,18 @@ import { myRestaurantsActions } from './../../state/my-restaurants/myRestaurants
 import {
   CardComponent,
   LinkButtonComponent,
+  RestaurantCardComponent,
 } from '@restaurant-booking/shared-ui';
 
 @Component({
   selector: 'rb-my-restaurants',
   standalone: true,
-  imports: [CommonModule, CardComponent, LinkButtonComponent],
+  imports: [
+    CommonModule,
+    CardComponent,
+    LinkButtonComponent,
+    RestaurantCardComponent,
+  ],
   templateUrl: './my-restaurants.component.html',
   styleUrl: './my-restaurants.component.scss',
 })

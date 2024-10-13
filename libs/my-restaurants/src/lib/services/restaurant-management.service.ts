@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import {
   CoreResponse,
   GetRestaurantsModel,
+  Restaurant,
 } from '@restaurant-booking/shared-types';
 
 @Injectable({
@@ -30,5 +31,9 @@ export class RestaurantManagementService {
       data,
       { context }
     );
+  }
+
+  public getRestaurantDetailsById(id: string): Observable<CoreResponse<{restaurant:Restaurant}>> {
+      return this.http.get<CoreResponse<{restaurant:Restaurant}>>(`${environment.apiUrl}/${this._prefix}/${id}`);
   }
 }
