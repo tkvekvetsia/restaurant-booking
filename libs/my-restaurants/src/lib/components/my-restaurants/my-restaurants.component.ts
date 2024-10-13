@@ -5,8 +5,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import {
   selectMyRestaurants,
   selectMyRestaurantsLoading,
-} from '../../state/my-restaurants/myRestaurants.selectors';
-import { myRestaurantsActions } from '../../state/my-restaurants/myRestaurants.actions';
+} from './../../state/my-restaurants/myRestaurants.selectors';
+import { myRestaurantsActions } from './../../state/my-restaurants/myRestaurants.actions';
 import {
   CardComponent,
   LinkButtonComponent,

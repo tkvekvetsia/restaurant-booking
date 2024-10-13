@@ -2,10 +2,11 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AUTHORIZED_ROUTE } from '@restaurant-booking/auth';
 import { environment } from '@restaurant-booking/environment';
-import { GetRestaurantsModel } from 'libs/restaurants/src/lib/models/getRestaurants.model';
 import { Observable } from 'rxjs';
-import { Restaurant } from '@prisma/client';
-import { CoreResponse } from '@restaurant-booking/shared-types';
+import {
+  CoreResponse,
+  GetRestaurantsModel,
+} from '@restaurant-booking/shared-types';
 
 @Injectable({
   providedIn: 'root',

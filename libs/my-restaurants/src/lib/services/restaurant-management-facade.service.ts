@@ -1,8 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { RestaurantManagementService } from './restaurant-management.service';
 import { Observable } from 'rxjs';
-import { GetRestaurantsModel } from 'libs/restaurants/src/lib/models/getRestaurants.model';
-import { CoreResponse } from '@restaurant-booking/shared-types';
+import {
+  CoreResponse,
+  GetRestaurantsModel,
+} from '@restaurant-booking/shared-types';
 
 @Injectable({
   providedIn: 'root',
