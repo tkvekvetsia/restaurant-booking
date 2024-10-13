@@ -9,3 +9,4 @@ export * from './lib/table.model';
 export * from './lib/user.model';
 export * from './lib/coreResponse.model';
 export * from './lib/getRestaurants.model';
+export * from './lib/request-response-models/createMenu.model';

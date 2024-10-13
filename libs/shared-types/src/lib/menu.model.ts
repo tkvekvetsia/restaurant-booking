@@ -1,14 +1,14 @@
 import { Restaurant } from './restaurant.model';
-import { MenuItem } from './menuItem.model';
 
 export interface Menu {
-  id: number;
-  restaurantId: number;
+  id: string;
+  restaurantId: string;
+  restaurantName: string;
+  restaurantAvatar: string;
   name: string;
   description?: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date | null;
   restaurant: Restaurant;
-  menuItems?: MenuItem[]; // Optional field for menu items
 }
