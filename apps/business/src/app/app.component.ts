@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  DoCheck,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,14 +7,13 @@ import {
   AuthStatusHelperService,
   selectIsLoggedIn,
 } from '@restaurant-booking/auth';
-import { take } from 'rxjs';
 import { SideNavComponent } from './core/components/side-nav/side-nav.component';
 import { NgClass } from '@angular/common';
-import { AuthFacadeService } from '../../../../libs/auth/src/lib/services/auth-facade.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, SideNavComponent, NgClass],
+  imports: [RouterModule, SideNavComponent, NgClass, ToastModule],
   selector: 'rb-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

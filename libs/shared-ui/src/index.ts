@@ -7,3 +7,4 @@ export * from './lib/pipes/form/allControlsAreTouched.pipe';
 export * from './lib/ui/inputs/components/file-upload/file-upload.component';
 export * from './lib/ui/notifications/compoents/sucess/success.component';
 export * from './lib/ui/restaurant/components/restaurant-card/restaurant-card.component';
+export * from './lib/interceptors/error-handler.interceptor';

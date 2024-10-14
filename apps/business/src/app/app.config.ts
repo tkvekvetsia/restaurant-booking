@@ -1,10 +1,9 @@
+import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
 import {
-  APP_INITIALIZER,
-  ApplicationConfig,
-  isDevMode,
-  provideZoneChangeDetection,
-} from '@angular/core';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+} from '@angular/router';
 import { appRoutes } from './app.routes';
 import {
   provideHttpClient,
@@ -14,33 +13,47 @@ import {
 import { EnvService, loadEnvFactory } from './core/services/env.service';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { authFeature } from '@restaurant-booking/auth';
-import { authInterceptor } from '@restaurant-booking/auth';
-import { getUserProfileEffect, userProfileFeature } from '@restaurant-booking/userProfile';
+import { authFeature, authInterceptor } from '@restaurant-booking/auth';
+import {
+  getUserProfileEffect,
+  userProfileFeature,
+} from '@restaurant-booking/userProfile';
 import { provideEffects } from '@ngrx/effects';
-import {  getMyRestaurantsEffect, myRestaurantsFeature } from '@restaurant-booking/my-restaurants';
+import {
+  getMyRestaurantsEffect,
+  myRestaurantsFeature,
+} from '@restaurant-booking/my-restaurants';
+import { MessageService } from 'primeng/api';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { errorHandlerInterceptor } from '@restaurant-booking/shared-ui';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes,
+    provideRouter(
+      appRoutes,
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
       }),
       withComponentInputBinding()
     ),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideAnimations(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor, errorHandlerInterceptor])
+    ),
+
     {
       provide: APP_INITIALIZER,
       multi: true,
       deps: [EnvService],
       useFactory: loadEnvFactory,
     },
-
+    MessageService,
     provideStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideState(authFeature),
     provideState(userProfileFeature),
     provideState(myRestaurantsFeature),
-    provideEffects({getUserProfileEffect, getMyRestaurantsEffect})
+    provideEffects({ getUserProfileEffect, getMyRestaurantsEffect }),
   ],
 };
