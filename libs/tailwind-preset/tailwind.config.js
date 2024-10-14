@@ -10,9 +10,9 @@ module.exports = {
     },
     colors: {
       primary: {
-        light: '#a2d9a0', // Light Green for Hover states, light backgrounds
-        DEFAULT: '#4caf50', // Default Green (Primary) Primary buttons, brand accents
-        dark: '#2e7d32', // Dark Green Active states, text accents
+        light: '#8f91e6', // Light Green for Hover states, light backgrounds
+        DEFAULT: '#6b6ee0', // Default Green (Primary) Primary buttons, brand accents
+        dark: '#4c4fb0', // Dark Green Active states, text accents
       },
       gray: {
         'extra-light': '#fafafa', // Extra Light Gray (Alternate Background) Alternate background
