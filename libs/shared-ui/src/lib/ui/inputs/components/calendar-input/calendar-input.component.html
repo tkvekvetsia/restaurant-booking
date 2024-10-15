@@ -1,0 +1,25 @@
+<div class="relative" rbClickOutside (clickOutside)="onClickOutside()">
+  <!-- Date Input -->
+  <rb-input-wrapper>
+    <input
+      type="text"
+      [formControl]="dateControl"
+      (focus)="openCalendar($event)"
+      class="rb-input"
+      #dateInput
+    />
+    <label class="rb-label">Select a date</label>
+  </rb-input-wrapper>
+  <div class="absolute w-full left-0 overflow-hidden" [hidden]="!showCalendar"
+       [ngClass]="showCalendar + '' ? calendarPosition : ''"
+       [@calendarAnimation]="calendarState"
+  >
+    <rb-calendar (dateSelected)="onDateSelect($event)"
+                 [selectedDate]="selectedDate"
+                 [borderClass]="calendarBorderClass"
+    />
+  </div>
+
+  <!-- Calendar Dropdown -->
+</div>
+

@@ -1,0 +1,81 @@
+<div
+  class="p-[0.25rem] rounded-[0.5rem] bg-white border border-primary-light  shadow z-10"
+  [ngClass]="borderClass ? borderClass : ''"
+>
+  <!-- Calendar Header (Month and Year) -->
+  <div class="flex items-center justify-between mb-4 text-black-dark">
+    <button
+      (click)="previousMonth()"
+      class="py-[0.125rem] px-[0.25rem] text-[1.2rem] rounded hover:bg-gray-light rounded-[0.5rem]">
+     <
+    </button>
+    <div class="text-lg font-semibold text-black-default">
+      {{ monthNames[selectedMonth] }} {{ selectedYear }}
+    </div>
+    <button
+      (click)="nextMonth()"
+      class="py-[0.125rem] px-[0.25rem] text-[1.2rem] rounded hover:bg-gray-light rounded-[0.5rem]">
+      >
+    </button>
+  </div>
+
+  <!-- Days of the Week -->
+  <div
+    class="grid grid-cols-7 rb-calendar-row-gap text-center font-semibold text-black-light">
+    <div *ngFor="let day of dayNames" class="py-[0.125rem]">{{ day }}</div>
+  </div>
+
+  <!-- Dates Grid -->
+  <div class="grid grid-cols-7 rb-calendar-row-gap text-center"
+  >
+    @for (date of calendarDays; track $index) {
+    <div class="flex justify-center">
+      <div
+        class="py-[0.125rem] text-primary cursor-pointer rounded   w-1/2 rounded-[1rem] transition-all ease-in-out duration-200"
+        [ngClass]="{
+          'bg-gray-light text-primary': isToday(date),
+          'text-gray': date.isOtherMonth,
+          'hover:bg-primary hover:text-white': !date.isOtherMonth,
+          'bg-primary-dark text-white': isSelectedDate(date)
+        }"
+        (click)="onDayClick(date.date, date.isOtherMonth)">
+        {{ date.date.getDate() }}
+      </div>
+    </div>
+
+    }
+  </div>
+</div>
+<!--<div class="p-4">-->
+<!--  &lt;!&ndash; Calendar Header (Month and Year) &ndash;&gt;-->
+<!--  <div class="flex items-center justify-between mb-4 text-black-dark">-->
+<!--    <button (click)="previousMonth()" class="p-2 bg-primary-light rounded hover:bg-primary-dark text-white">-->
+<!--      Prev-->
+<!--    </button>-->
+<!--    <div class="text-lg font-semibold text-black-default">-->
+<!--      {{ monthNames[activeMonth] }} {{ activeYear }}-->
+<!--    </div>-->
+<!--    <button (click)="nextMonth()" class="p-2 bg-primary-light rounded hover:bg-primary-dark text-white">-->
+<!--      Next-->
+<!--    </button>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Days of the Week &ndash;&gt;-->
+<!--  <div class="grid grid-cols-7 gap-2 text-center font-semibold text-black-light">-->
+<!--    <div *ngFor="let day of dayNames" class="py-2">{{ day }}</div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Dates Grid &ndash;&gt;-->
+<!--  <div class="grid grid-cols-7 gap-2 text-center">-->
+<!--    <div-->
+<!--      *ngFor="let date of calendarDays"-->
+<!--      class="py-2 cursor-pointer rounded hover:bg-primary-light hover:text-white"-->
+<!--      [ngClass]="{-->
+<!--        'bg-primary-dark text-white': isToday(date),-->
+<!--        'text-black-light': date.isOtherMonth-->
+<!--      }"-->
+<!--      (click)="onDayClick(date.date)">-->
+<!--      {{ date.date.getDate() }}-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

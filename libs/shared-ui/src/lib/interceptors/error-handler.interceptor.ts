@@ -7,15 +7,15 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
   const messageService = inject(MessageService);
   return next(req).pipe(
     tap(res => {
-      // const response = res as CoreResponse<any>;
-      // if (response.status === 'fail') {
-      //   messageService.add({
-      //     severity: 'error',
-      //     summary: 'Error',
-      //     detail: response.message || '',
-      //     life: 5000,
-      //   });
-      // }
+      const response = res as any;
+      if (response.status === 'fail') {
+        messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: response.message || '',
+          life: 5000,
+        });
+      }
     }),
     catchError(err => {
       const error = err.error;

@@ -1,14 +1,18 @@
-@if (isLoggedIn()){
-  <rb-side-nav />
-}
-<main
-  class="mt-[2rem]"
-  [ngClass]="{
-    'ml-[8rem]': isLoggedIn()
-  }">
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-</main>
+<!--@if (isLoggedIn()){-->
+<!--  <rb-side-nav />-->
+<!--}-->
+<!--<main-->
+<!--  class="mt-[2rem]"-->
+<!--  [ngClass]="{-->
+<!--    'ml-[8rem]': isLoggedIn()-->
+<!--  }">-->
+<!--  <div>-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
+<!--</main>-->
 
-<p-toast/>
+<!--<p-toast/>-->
+
+<!--<rb-calendar/>-->
+<div class="mt-[5rem]"></div>
+<rb-calendar-input [formControl]="control"/>
